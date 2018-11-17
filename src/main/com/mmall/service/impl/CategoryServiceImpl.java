@@ -18,9 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by geely
- */
+
 @Service("iCategoryService")
 public class CategoryServiceImpl implements ICategoryService {
 
@@ -29,7 +27,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
     private CategoryMapper categoryMapper;
-
+    /** 1 查找分类，分页*/
     @Override
     public ServerResponse<PageInfo> getProduct() {
         PageHelper.startPage(0, 2);
@@ -47,13 +45,13 @@ public class CategoryServiceImpl implements ICategoryService {
         if (parentId == null || StringUtils.isBlank(categoryName)) {
             return ServerResponse.createByErrorMessage("添加品类参数错误");
         }
-/**设置新的插入对象，接受数据进行更新*/
+        /**设置新的插入对象，接受数据进行更新*/
         Category category = new Category();
         category.setName(categoryName);
         category.setParentId(parentId);
         /**这个分类默认是可用的*/
         category.setStatus(true);
-/**插入数据并且返回受影响的行数；*/
+        /**插入数据并且返回受影响的行数；*/
         int rowCount = categoryMapper.insert(category);
         if (rowCount > 0) {
             return ServerResponse.createBySuccess("添加品类成功");
@@ -82,7 +80,8 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     /**
-     * 3 查找当前分类的子节点；
+     * 3 查找当前分类的同一级别的分类；
+     * 传入0就是所有的一级分类，二级分类放入parentid就是一级分类的id；
      */
     public ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId) {
         /**对传入的id进行查询，并且进行Null判断；*/
@@ -117,8 +116,8 @@ public class CategoryServiceImpl implements ICategoryService {
         return ServerResponse.createBySuccess(categoryIdList);
     }
 
-
-    //递归算法,算出子节点
+//todo 蒙逼
+    /**递归算法,算出子节点*/
     private Set<Category> findChildCategory(Set<Category> categorySet, Integer categoryId) {
         Category category = categoryMapper.selectByPrimaryKey(categoryId);
         if (category != null) {

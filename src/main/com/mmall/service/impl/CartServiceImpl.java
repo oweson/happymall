@@ -35,6 +35,7 @@ public class CartServiceImpl implements ICartService {
      */
     public ServerResponse<CartVo> add(Integer userId, Integer productId, Integer count) {
         /**浏览器审查元素恶意提交*/
+        //todo 问题在于productId进不来！！！
         if (productId == null || count == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }

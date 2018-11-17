@@ -46,6 +46,7 @@ public class CartController {
     @ResponseBody
     public ServerResponse<CartVo> add(HttpSession session, Integer count, Integer productId) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
+        //todo 这里productId进不来！！！
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }

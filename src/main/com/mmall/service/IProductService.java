@@ -5,28 +5,47 @@ import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Product;
 import com.mmall.vo.ProductDetailVo;
 
-/**
- * Created by geely
- */
+
 public interface IProductService {
     ServerResponse<PageInfo> getProductListByMe(int pageNum, int pageSize);
 
     ServerResponse<PageInfo> getProductPageTest(int pageNum, int pageSize);
 
+    /**
+     * 1 保存或者更新商品
+     */
     ServerResponse saveOrUpdateProduct(Product product);
 
+    /**
+     * 2 设置商品的状态
+     */
     ServerResponse<String> setSaleStatus(Integer productId, Integer status);
+
+    /**
+     * 3 管理商品
+     */
 
     ServerResponse<ProductDetailVo> manageProductDetail(Integer productId);
 
+    /**
+     * 4 查询商品的列表
+     */
     ServerResponse<PageInfo> getProductList(int pageNum, int pageSize);
 
+    /**
+     * 5 搜索商品根据商品的名字
+     */
     ServerResponse<PageInfo> searchProduct(String productName, Integer productId, int pageNum, int pageSize);
 
+    /**
+     * 6 获得商品的详情
+     */
     ServerResponse<ProductDetailVo> getProductDetail(Integer productId);
 
+    /**
+     * 7 关键字搜素商品分页
+     */
     ServerResponse<PageInfo> getProductByKeywordCategory(String keyword, Integer categoryId, int pageNum, int pageSize, String orderBy);
-
 
 
 }

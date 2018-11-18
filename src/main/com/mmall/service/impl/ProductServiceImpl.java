@@ -73,7 +73,7 @@ public class ProductServiceImpl implements IProductService {
                     product.setMainImage(subImageArray[0]);
                 }
             }
-/**商品的id存在，说明是更新操作*/
+            /**假如到了这里！商品不为空，商品的id存在，说明是更新操作*/
             if (product.getId() != null) {
                 /**进行更新并且返回受影响的行数*/
                 int rowCount = productMapper.updateByPrimaryKey(product);
@@ -82,7 +82,8 @@ public class ProductServiceImpl implements IProductService {
                 }
                 return ServerResponse.createBySuccess("更新产品失败");
             } else {
-                /**到了这里了就是商品的id不存在，那就是插入商品操作，进行插入并且返回受用想的行数*/
+                /**到了这里了就是商品不为空，商品的id不存在，那就是插入商品操作，
+                 * 进行插入并且返回受用想的行数*/
                 int rowCount = productMapper.insert(product);
                 if (rowCount > 0) {
                     return ServerResponse.createBySuccess("新增产品成功");
@@ -134,6 +135,7 @@ public class ProductServiceImpl implements IProductService {
      * 3 返回商品的列表
      */
     private ProductDetailVo assembleProductDetailVo(Product product) {
+        //todo 属性拷贝怎么样？？？
         /**自己定义的用来封装对象的vo对象*/
         ProductDetailVo productDetailVo = new ProductDetailVo();
         productDetailVo.setId(product.getId());
@@ -167,7 +169,6 @@ public class ProductServiceImpl implements IProductService {
     /**
      * 4 得到商品的所有的列表
      */
-    //?????/?
     public ServerResponse<PageInfo> getProductList(int pageNum, int pageSize) {
         //startPage--start
         //填充自己的sql查询逻辑
@@ -180,17 +181,21 @@ public class ProductServiceImpl implements IProductService {
         List<ProductListVo> productListVoList = Lists.newArrayList();
         /**吧所有的商品的信息都进行封装成Vo对象*/
         for (Product productItem : productList) {
+            /**把商品vo添加到商品vo集合*/
             ProductListVo productListVo = assembleProductListVo(productItem);
             productListVoList.add(productListVo);
         }
         /**收尾进行分页处理*/
         PageInfo pageResult = new PageInfo(productList);
         /**返回我们需要的分页结果*/
-        /**通过放射设置数据*/
+        /**通过反射设置数据*/
         pageResult.setList(productListVoList);
         return ServerResponse.createBySuccess(pageResult);
     }
 
+    /**
+     * 组装商品vo集合
+     */
     private ProductListVo assembleProductListVo(Product product) {
         /**因为返回的商品信息，有些字段是不需要的，所以封装Vo对象进行接收需要的字段*/
         ProductListVo productListVo = new ProductListVo();
@@ -209,13 +214,17 @@ public class ProductServiceImpl implements IProductService {
     /**
      * 5 分页的搜索，商品
      */
+
     public ServerResponse<PageInfo> searchProduct(String productName, Integer productId, int pageNum, int pageSize) {
+        /**根据id或者名字搜索，一方为null不参与条件的拼接*/
         /**进行分页，*/
         PageHelper.startPage(pageNum, pageSize);
         if (StringUtils.isNotBlank(productName)) {
+            //todo 缺陷？？？开头和结尾的出不来
             /**查询包含商品名字的所有商品*/
             productName = new StringBuilder().append("%").append(productName).append("%").toString();
         }
+        /**根据名字可能返回多个商品的信息*/
         List<Product> productList = productMapper.selectByNameAndProductId(productName, productId);
         List<ProductListVo> productListVoList = Lists.newArrayList();
         for (Product productItem : productList) {
@@ -223,22 +232,23 @@ public class ProductServiceImpl implements IProductService {
             productListVoList.add(productListVo);
         }
         /**代码复用上一次的代码；*/
-        /**吧得到的商品信息进行封装*/
+        /**把得到的商品信息进行封装*/
         /**根据集合进行分页的处理*/
         PageInfo pageResult = new PageInfo(productList);
         /**不是吧查询到的所有数据给前端，但是还需要分页
          * */
         pageResult.setList(productListVoList);
-        /**吧列表重置就是需要先显示的结果*/
+        /**把列表重置就是需要显示的结果*/
         return ServerResponse.createBySuccess(pageResult);
 
     }
 
-
+  /** 6 商品的详情*/
     public ServerResponse<ProductDetailVo> getProductDetail(Integer productId) {
         if (productId == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
+        /**就是放入购物车的商品，某一天也会不存在，已经下架*/
         Product product = productMapper.selectByPrimaryKey(productId);
         if (product == null) {
             return ServerResponse.createByErrorMessage("产品已下架或者删除");
@@ -247,6 +257,7 @@ public class ProductServiceImpl implements IProductService {
         if (product.getStatus() != Const.ProductStatusEnum.ON_SALE.getCode()) {
             return ServerResponse.createByErrorMessage("产品已下架或者删除");
         }
+        /**组装商品详情的vo对象*/
         ProductDetailVo productDetailVo = assembleProductDetailVo(product);
         return ServerResponse.createBySuccess(productDetailVo);
     }
@@ -261,13 +272,14 @@ public class ProductServiceImpl implements IProductService {
 
         if (categoryId != null) {
             Category category = categoryMapper.selectByPrimaryKey(categoryId);
+            /**没有该分类,或者没有关键字为空,这个时候返回一个空的结果集,不报错*/
             if (category == null && StringUtils.isBlank(keyword)) {
-                //没有该分类,并且还没有关键字,这个时候返回一个空的结果集,不报错
                 PageHelper.startPage(pageNum, pageSize);
                 List<ProductListVo> productListVoList = Lists.newArrayList();
                 PageInfo pageInfo = new PageInfo(productListVoList);
                 return ServerResponse.createBySuccess(pageInfo);
             }
+            //todo 下面的蒙逼！！！
             categoryIdList = iCategoryService.selectCategoryAndChildrenById(category.getId()).getData();
         }
         if (StringUtils.isNotBlank(keyword)) {
@@ -275,7 +287,7 @@ public class ProductServiceImpl implements IProductService {
         }
 
         PageHelper.startPage(pageNum, pageSize);
-        //排序处理
+        /**排序处理*/
         if (StringUtils.isNotBlank(orderBy)) {
             if (Const.ProductListOrderBy.PRICE_ASC_DESC.contains(orderBy)) {
                 /**c传入的数据格式price_asc,进行分割

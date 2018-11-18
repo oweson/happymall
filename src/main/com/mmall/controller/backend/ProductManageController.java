@@ -21,9 +21,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-/**
- * Created by geely
- */
 
 @Controller
 /**1 产品的管理*/
@@ -36,20 +33,6 @@ public class ProductManageController {
     private IProductService iProductService;
     @Autowired
     private IFileService iFileService;
-
-    @RequestMapping("/testPage02.do")
-    @ResponseBody
-    public ServerResponse testPage02(@RequestParam(value = "pageNum", defaultValue = "0") int pageNum, @RequestParam(value = "pageSize", defaultValue = "2") int pageSize) {
-
-        return iProductService.getProductPageTest(pageNum, pageSize);
-    }
-
-    @RequestMapping("/testPage.do")
-    @ResponseBody
-    public ServerResponse testPage(@RequestParam(value = "pageNum", defaultValue = "0") Integer pageNum, @RequestParam(value = "pageSize", defaultValue = "2") Integer pageSize) {
-
-        return iProductService.getProductListByMe(pageNum, pageSize);
-    }
 
     @RequestMapping("save.do")
     @ResponseBody
@@ -64,7 +47,7 @@ public class ProductManageController {
         }
         /**确认是管理员*/
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            //填充我们增加产品的业务逻辑
+            /**填充我们增加产品的业务逻辑*/
             return iProductService.saveOrUpdateProduct(product);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作");
@@ -104,7 +87,7 @@ public class ProductManageController {
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
             /**确认是管理员*/
-            //填充业务
+            /**填充业务*/
             return iProductService.manageProductDetail(productId);
 
         } else {
@@ -125,7 +108,7 @@ public class ProductManageController {
 
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            //填充业务
+            /**填充业务*/
             return iProductService.getProductList(pageNum, pageSize);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作");
@@ -144,7 +127,7 @@ public class ProductManageController {
 
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            //填充业务
+            /**填充业务*/
             return iProductService.searchProduct(productName, productId, pageNum, pageSize);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作");
@@ -152,22 +135,26 @@ public class ProductManageController {
     }
 
     /**
-     * 6 商品的上传；
+     * 6 商品图片的上传；
      */
     @RequestMapping("upload.do")
     @ResponseBody
-    /**进行权限的教研，不是管理员不允许上传；*/
+    /**进行权限的校验，不是管理员不允许上传；*/
     public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录管理员");
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
+            /**得到图片的文件夹目录*/
             String path = request.getSession().getServletContext().getRealPath("upload");
+            /**返回上传的文件名*/
             String targetFileName = iFileService.upload(file, path);
+            /**图片在服务器的地址*/
             String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
 
-            Map fileMap = Maps.newHashMap();
+            Map<String, Object> fileMap = Maps.newHashMap();
+            /**上传图片成功后，返回图片的名字和图片的url给前端*/
             fileMap.put("uri", targetFileName);
             fileMap.put("url", url);
             return ServerResponse.createBySuccess(fileMap);
@@ -176,7 +163,15 @@ public class ProductManageController {
         }
     }
 
-
+    /**
+     * 7 富文本上传图片；
+     * 富文本格式（Rich Text Format, 一般简称为RTF）是一种跨平台文档格式，由微软公司开发。
+     * 大多数的文字处理软件都能读取和保存RTF文档。
+     * 　　富文本格式是一种类似DOC格式（Word文档）的文件，有很好的兼容性，
+     * 使用Windows系统里面的“写字板”就能打开并进行编辑。RTF是一种非常流行的文件结构，
+     * 很多文字编辑器都支持它。一般的格式设置，比如字体和段落设置，
+     * 页面设置等等信息都可以存在RTF格式中能在一定程度上实现word与wps文件之间的互访。
+     */
     @RequestMapping("richtext_img_upload.do")
     @ResponseBody
     public Map richtextImgUpload(HttpSession session, @RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
@@ -201,6 +196,7 @@ public class ProductManageController {
                 resultMap.put("msg", "上传失败");
                 return resultMap;
             }
+            /**成功*/
             String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
             resultMap.put("success", true);
             resultMap.put("msg", "上传成功");

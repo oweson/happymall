@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-/**
- * Created by geely
- */
+
 
 @Controller
 @RequestMapping("/product/")
@@ -28,10 +26,8 @@ public class ProductController {
     }
 
     /**
-     * 实现restful
+     *  2 实现restful
      * keyword/{keyword}进行制定！！！------keyword定位了list方法！！！
-     */
-    /**
      * http://localhost:9090//product/keyword/%E6%89%8B%E6%9C%BA/100012/1/2/price_dsc
      */
     @RequestMapping(value = "keyword/{keyword}/{categoryId}/{pageNum}/{pageSize}/{orderBy}", method = RequestMethod.GET)
@@ -40,7 +36,9 @@ public class ProductController {
                                          @PathVariable(value = "categoryId") Integer categoryId,
                                          @PathVariable(value = "pageNum") Integer pageNum,
                                          @PathVariable(value = "pageSize") Integer pageSize,
+
                                          @PathVariable(value = "orderBy") String orderBy) {
+        /**为商品的分页参数设置默认值*/
         if (pageNum == null) {
             pageNum = 1;
 
@@ -49,6 +47,7 @@ public class ProductController {
             pageSize = 10;
         }
         if (StringUtils.isBlank(orderBy)) {
+            /**默认价格低的上浮*/
             orderBy = "price_asc";
         }
 

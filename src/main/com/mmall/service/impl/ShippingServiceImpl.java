@@ -30,7 +30,7 @@ public class ShippingServiceImpl implements IShippingService {
         int rowCount = shippingMapper.insert(shipping);
         if (rowCount > 0) {
             Map result = Maps.newHashMap();
-            /**添加成功后返回收货地址的id给前端*/
+            /**添加成功后返回收货地址的id给前端,让用看添成了*/
             result.put("shippingId", shipping.getId());
             return ServerResponse.createBySuccess("新建地址成功", result);
         }
@@ -53,10 +53,11 @@ public class ShippingServiceImpl implements IShippingService {
      */
     public ServerResponse update(Integer userId, Shipping shipping) {
         /**防止传入假的userid,更新别人的地址
-         * ，必须充登录用户的sessionn中拿到userid*/
+         * ，必须在登录用户的sessionn中拿到userid*/
         shipping.setUserId(userId);
         int rowCount = shippingMapper.updateByShipping(shipping);
         if (rowCount > 0) {
+            /**数据库的底层总有这那样的原因存在*/
             return ServerResponse.createBySuccess("更新地址成功");
         }
         return ServerResponse.createByErrorMessage("更新地址失败");
@@ -76,7 +77,7 @@ public class ShippingServiceImpl implements IShippingService {
     }
 
     /**
-     * 5查看收货地址的列表
+     * 5 查看收货地址的列表
      */
     public ServerResponse<PageInfo> list(Integer userId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);

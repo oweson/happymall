@@ -1,11 +1,9 @@
 package utils;
 
-import com.google.common.collect.Collections2;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 /**
  * the class is create by @Author:oweson

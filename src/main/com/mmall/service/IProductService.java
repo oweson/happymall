@@ -28,12 +28,12 @@ public interface IProductService {
     ServerResponse<ProductDetailVo> manageProductDetail(Integer productId);
 
     /**
-     * 4 查询商品的列表
+     * 4 后台查询商品的列表
      */
     ServerResponse<PageInfo> getProductList(int pageNum, int pageSize);
 
     /**
-     * 5 搜索商品根据商品的名字
+     * 5 后台搜索商品根据商品的名字
      */
     ServerResponse<PageInfo> searchProduct(String productName, Integer productId, int pageNum, int pageSize);
 

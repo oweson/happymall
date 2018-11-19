@@ -5,7 +5,6 @@ import com.mmall.common.Const;
 import com.mmall.common.ResponseCode;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.User;
-import com.mmall.service.ICartService;
 import com.mmall.service.ICategoryService;
 import com.mmall.service.IUserService;
 import com.mmall.service.MyICategoryservice;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.Response;
 
 /**
  * the class is create by @Author:oweson
@@ -38,7 +36,7 @@ public class MyCategoryManageController {
     @RequestMapping("/testPage")
     @ResponseBody
     public ServerResponse page() {
-        ServerResponse<PageInfo> product = iCategoryService.getProduct();
+        ServerResponse<PageInfo> product = iCategoryService.getCategory();
         return product;
 
 

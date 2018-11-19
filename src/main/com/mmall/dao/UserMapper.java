@@ -3,6 +3,8 @@ package com.mmall.dao;
 import com.mmall.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 当你使用了使用@Param注解来声明参数时，如果使用 #{} 或 ${} 的方式都可以。
  * 当你不使用@Param注解来声明参数时，必须使用使用 #{}方式。如果使用 ${} 的方式，会报错。
@@ -57,4 +59,5 @@ public interface UserMapper {
 
     int checkEmailByUserId(@Param(value = "email") String email, @Param(value = "userId") Integer userId);
     int count();
+    List<User> list();
 }

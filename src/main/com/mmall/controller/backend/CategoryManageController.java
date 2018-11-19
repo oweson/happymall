@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by geely
- */
 
 /**
  * 1 分类管理模块
@@ -38,8 +35,7 @@ public class CategoryManageController {
      */
     @RequestMapping("add_category.do")
     @ResponseBody
-    /** 判断当前用户是否登录，session是有效期限的;
-     * 不传入parentId就是一级分类*/
+    /** 判断当前用户是否登录，session是有效期限的，不传入parentId就是一级分类*/
     public ServerResponse addCategory(HttpSession session, String categoryName, @RequestParam(value = "parentId", defaultValue = "0") int parentId) {
         /**从session中得到当前用户*/
         User user = (User) session.getAttribute(Const.CURRENT_USER);
@@ -47,11 +43,11 @@ public class CategoryManageController {
             /**如果用户为Null说明用户为登录，返回需要登录状态码*/
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录");
         }
-        /**校验一下是否是管理员*/
+        /**校验一下是否是管理员,只有管理员才可以操作分类*/
         if (iUserService.checkAdminRole(user).isSuccess()) {
             /**调用了方法得到教研对象，然后又调用了方法判断成功*/
-            //是管理员
-            //增加我们处理分类的逻辑
+            /**是管理员,增加我们处理分类的逻辑*/
+
             return iCategoryService.addCategory(categoryName, parentId);
 
         } else {

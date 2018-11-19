@@ -48,6 +48,7 @@ public class ShippingController {
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
+        /**用户的id是服务端拿到的*/
         return iShippingService.del(user.getId(), shippingId);
     }
 
@@ -82,6 +83,7 @@ public class ShippingController {
      */
     @RequestMapping("list.do")
     @ResponseBody
+    /**设置分页的默认值不传入也不会报错*/
     public ServerResponse<PageInfo> list(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
                                          @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
                                          HttpSession session) {

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
 
 
@@ -113,6 +114,27 @@ public class CategoryManageController {
         } else {
             return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");
         }
+    }
+
+    /**
+     * 5 删除分类
+     */
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public ServerResponse delete(@RequestParam("cid") Integer cid, HttpSession session) {
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
+
+        }
+        if (iUserService.checkAdminRole(user).isSuccess()) {
+
+            return iCategoryService.delete(cid);
+
+        } else {
+            return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");
+        }
+
+
     }
 
 

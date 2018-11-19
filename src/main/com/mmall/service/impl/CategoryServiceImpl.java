@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mmall.common.ServerResponse;
 import com.mmall.dao.CategoryMapper;
+import com.mmall.dao.UserMapper;
 import com.mmall.pojo.Category;
 import com.mmall.service.ICategoryService;
 import org.apache.commons.collections.CollectionUtils;
@@ -27,9 +28,12 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
     private CategoryMapper categoryMapper;
-    /** 1 查找分类，分页*/
+
+    /**
+     * 1 查找分类，分页
+     */
     @Override
-    public ServerResponse<PageInfo> getProduct() {
+    public ServerResponse<PageInfo> getCategory() {
         PageHelper.startPage(0, 2);
         List<Category> categories = categoryMapper.selectAllCategory();
         PageInfo pageInfo = new PageInfo(categories);
@@ -117,7 +121,10 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
 //todo 蒙逼
-    /**递归算法,算出子节点*/
+
+    /**
+     * 递归算法,算出子节点
+     */
     private Set<Category> findChildCategory(Set<Category> categorySet, Integer categoryId) {
         Category category = categoryMapper.selectByPrimaryKey(categoryId);
         if (category != null) {
@@ -131,5 +138,13 @@ public class CategoryServiceImpl implements ICategoryService {
         return categorySet;
     }
 
+    @Override
+    public ServerResponse delete(Integer cid) {
+        int i = categoryMapper.deleteByPrimaryKey(cid);
+        if (i > 0) {
+            return ServerResponse.createBySuccess("删除成功");
 
+        }
+        return ServerResponse.createByErrorMessage("删除失败");
+    }
 }

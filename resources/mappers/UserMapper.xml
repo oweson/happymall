@@ -216,6 +216,12 @@
     <select id="count" resultType="int">
     select count(1) from mmall_user
   </select>
+    <select id="list" resultMap="BaseResultMap">
+        select
+            <include refid="Base_Column_List"/>
+        from
+        mmall_user
+    </select>
 
 
 </mapper>

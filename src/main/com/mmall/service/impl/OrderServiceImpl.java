@@ -54,9 +54,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-/**
- * Created by geely
- */
+
 @Service("iOrderService")
 public class OrderServiceImpl implements IOrderService {
 
@@ -106,9 +104,7 @@ public class OrderServiceImpl implements IOrderService {
         }
         List<OrderItem> orderItemList = (List<OrderItem>) serverResponse.getData();
         BigDecimal payment = this.getOrderTotalPrice(orderItemList);
-
-
-        //生成订单
+        /**生成订单*/
         Order order = this.assembleOrder(userId, shippingId, payment);
         if (order == null) {
             return ServerResponse.createByErrorMessage("生成订单错误");
@@ -119,23 +115,20 @@ public class OrderServiceImpl implements IOrderService {
         for (OrderItem orderItem : orderItemList) {
             orderItem.setOrderNo(order.getOrderNo());
         }
-        //mybatis 批量插入
+        /**mybatis 批量插入*/
         orderItemMapper.batchInsert(orderItemList);
-
-        //生成成功,我们要减少我们产品的库存
+        /**生成成功,我们要减少我们产品的库存*/
         this.reduceProductStock(orderItemList);
-        //清空一下购物车
+        /**清空一下购物车*/
         this.cleanCart(cartList);
-
-        //返回给前端数据
-
+        /**返回给前端数据*/
         OrderVo orderVo = assembleOrderVo(order, orderItemList);
         return ServerResponse.createBySuccess(orderVo);
     }
 
 
     /**
-     * 组装订单vo
+     * 2 组装订单vo
      */
     private OrderVo assembleOrderVo(Order order, List<OrderItem> orderItemList) {
         OrderVo orderVo = new OrderVo();
@@ -180,7 +173,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     /**
-     * 组装订单项
+     * 3 组装订单项
      */
     private OrderItemVo assembleOrderItemVo(OrderItem orderItem) {
         OrderItemVo orderItemVo = new OrderItemVo();
@@ -198,7 +191,7 @@ public class OrderServiceImpl implements IOrderService {
 
 
     /**
-     * 组装地址vo
+     * 4 组装地址vo
      */
     private ShippingVo assembleShippingVo(Shipping shipping) {
         ShippingVo shippingVo = new ShippingVo();
@@ -213,13 +206,18 @@ public class OrderServiceImpl implements IOrderService {
         return shippingVo;
     }
 
+    /**
+     * 5 清空购物车
+     */
     private void cleanCart(List<Cart> cartList) {
         for (Cart cart : cartList) {
             cartMapper.deleteByPrimaryKey(cart.getId());
         }
     }
 
-
+    /**
+     * 6 减掉库存
+     */
     private void reduceProductStock(List<OrderItem> orderItemList) {
         for (OrderItem orderItem : orderItemList) {
             Product product = productMapper.selectByPrimaryKey(orderItem.getProductId());
@@ -228,7 +226,9 @@ public class OrderServiceImpl implements IOrderService {
         }
     }
 
-
+    /**
+     * 7 组装订单
+     */
     private Order assembleOrder(Integer userId, Integer shippingId, BigDecimal payment) {
         Order order = new Order();
         long orderNo = this.generateOrderNo();
@@ -240,8 +240,8 @@ public class OrderServiceImpl implements IOrderService {
 
         order.setUserId(userId);
         order.setShippingId(shippingId);
-        //发货时间等等
-        //付款时间等等
+        /**发货时间等等*/
+        /**付款时间等等*/
         int rowCount = orderMapper.insert(order);
         if (rowCount > 0) {
             return order;
@@ -249,13 +249,17 @@ public class OrderServiceImpl implements IOrderService {
         return null;
     }
 
-
+    /**
+     * 8 生成订单号，具备10000并发能力
+     */
     private long generateOrderNo() {
         long currentTime = System.currentTimeMillis();
-        return currentTime + new Random().nextInt(100);
+        return currentTime + new Random().nextInt(10000);
     }
 
-
+    /**
+     * 9 计算总的金额
+     */
     private BigDecimal getOrderTotalPrice(List<OrderItem> orderItemList) {
         BigDecimal payment = new BigDecimal("0");
         for (OrderItem orderItem : orderItemList) {
@@ -265,7 +269,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     /**
-     * 计算订单的总价
+     * 10 计算订单的总价
      */
     private ServerResponse getCartOrderItem(Integer userId, List<Cart> cartList) {
         List<OrderItem> orderItemList = Lists.newArrayList();
@@ -305,7 +309,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     /**
-     * 取消订单
+     * 11 取消订单
      */
     public ServerResponse<String> cancel(Integer userId, Long orderNo) {
         /**通过用户id和订单id查询这个订单*/
@@ -332,7 +336,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     /**
-     * 获取订单的商品信息
+     * 12 获取订单的商品信息
      */
     public ServerResponse getOrderCartProduct(Integer userId) {
         OrderProductVo orderProductVo = new OrderProductVo();
@@ -359,7 +363,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     /**
-     * 查看订单详情
+     * 13 查看订单详情
      */
     public ServerResponse<OrderVo> getOrderDetail(Integer userId, Long orderNo) {
         Order order = orderMapper.selectByUserIdAndOrderNo(userId, orderNo);
@@ -374,7 +378,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     /**
-     * 用户的订单列表
+     * 14 用户的订单列表
      */
     public ServerResponse<PageInfo> getOrderList(Integer userId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -388,7 +392,7 @@ public class OrderServiceImpl implements IOrderService {
     }
 
     /**
-     * 返回订单的vo列表;
+     * 15 返回订单的vo列表;
      * 普通用户和管理员用一个方法，userid是区分
      */
     private List<OrderVo> assembleOrderVoList(List<Order> orderList, Integer userId) {
@@ -412,7 +416,9 @@ public class OrderServiceImpl implements IOrderService {
         return orderVoList;
     }
 
-
+    /**
+     * 16 支付
+     */
     public ServerResponse pay(Long orderNo, Integer userId, String path) {
         Map<String, String> resultMap = Maps.newHashMap();
         Order order = orderMapper.selectByUserIdAndOrderNo(userId, orderNo);
@@ -474,7 +480,7 @@ public class OrderServiceImpl implements IOrderService {
             goodsDetailList.add(goods);
         }
 
-        // 创建扫码支付请求builder，设置请求参数
+        /** 创建扫码支付请求builder，设置请求参数*/
         AlipayTradePrecreateRequestBuilder builder = new AlipayTradePrecreateRequestBuilder()
                 .setSubject(subject).setTotalAmount(totalAmount).setOutTradeNo(outTradeNo)
                 .setUndiscountableAmount(undiscountableAmount).setSellerId(sellerId).setBody(body)
@@ -529,7 +535,9 @@ public class OrderServiceImpl implements IOrderService {
 
     }
 
-    // 简单打印应答
+    /**
+     * 17 简单打印应答
+     */
     private void dumpResponse(AlipayResponse response) {
         if (response != null) {
             logger.info(String.format("code:%s, msg:%s", response.getCode(), response.getMsg()));

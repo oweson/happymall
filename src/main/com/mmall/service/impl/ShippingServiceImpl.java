@@ -25,12 +25,12 @@ public class ShippingServiceImpl implements IShippingService {
      * 1 添加收货地址
      */
     public ServerResponse add(Integer userId, Shipping shipping) {
-        /**用户的id是从后端拿到的，session哪里拿到的，进行设置*/
+        /**用户的id是从后端拿到的，session哪里拿到的，防止恶心用户攻击，进行设置*/
         shipping.setUserId(userId);
         int rowCount = shippingMapper.insert(shipping);
         if (rowCount > 0) {
             Map result = Maps.newHashMap();
-            /**添加成功后返回收货地址的id给前端,让用看添成了*/
+            /**添加成功后返回收货地址的id给前端,让用户看到添加成功了*/
             result.put("shippingId", shipping.getId());
             return ServerResponse.createBySuccess("新建地址成功", result);
         }
@@ -52,12 +52,11 @@ public class ShippingServiceImpl implements IShippingService {
      * 3 更新收货地址
      */
     public ServerResponse update(Integer userId, Shipping shipping) {
-        /**防止传入假的userid,更新别人的地址
-         * ，必须在登录用户的sessionn中拿到userid*/
+        /**防止传入假的userid,更新别人的地址，必须在登录用户的session中拿到userid*/
         shipping.setUserId(userId);
         int rowCount = shippingMapper.updateByShipping(shipping);
         if (rowCount > 0) {
-            /**数据库的底层总有这那样的原因存在*/
+            /**数据库的底层总有这那样的原因存在，所以要进行受影响行数的判断*/
             return ServerResponse.createBySuccess("更新地址成功");
         }
         return ServerResponse.createByErrorMessage("更新地址失败");
@@ -67,7 +66,8 @@ public class ShippingServiceImpl implements IShippingService {
      * 4 查看收货地址
      */
     public ServerResponse<Shipping> select(Integer userId, Integer shippingId) {
-        /**防止越权看别人的，修改审查元素*/
+        /**防止越权看别人的，修改审查元素；
+         * 保证这个用户的收货地址一定是指向这个用户的*/
         Shipping shipping = shippingMapper.selectByShippingIdUserId(userId, shippingId);
         if (shipping == null) {
             return ServerResponse.createByErrorMessage("无法查询到该地址");

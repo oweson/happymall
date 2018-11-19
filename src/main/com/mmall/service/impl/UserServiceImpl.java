@@ -1,25 +1,62 @@
 package com.mmall.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 import com.mmall.common.Const;
 import com.mmall.common.ServerResponse;
 import com.mmall.common.TokenCache;
 import com.mmall.dao.UserMapper;
 import com.mmall.pojo.User;
 import com.mmall.service.IUserService;
+import com.mmall.util.DateTimeUtil;
 import com.mmall.util.MD5Util;
+import com.mmall.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.jws.soap.SOAPBinding;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
-/**
- * Created by geely
- */
+
 @Service("iUserService")
 public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;
+/**后台返回用户列表*/
+    @Override
+    public ServerResponse<PageInfo> list(int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> userList = userMapper.list();
+        List<UserVo> userVos = this.assemUserVo(userList);
+        PageInfo userVoPageInfo = new PageInfo(userList);
+        userVoPageInfo.setList(userVos);
+        return ServerResponse.createBySuccess(userVoPageInfo);
+    }
+
+    private List<UserVo> assemUserVo(List<User> list) {
+        ArrayList<UserVo> userVoList = Lists.newArrayList();
+        for (User user : list) {
+            UserVo userVo = new UserVo();
+            userVo.setId(user.getId());
+            userVo.setUername(user.getUsername());
+            userVo.setPassword(user.getPassword());
+            userVo.setEmail(user.getEmail());
+            userVo.setQuestion(user.getQuestion());
+            userVo.setAnswer(user.getAnswer());
+            userVo.setRole(user.getRole());
+            /**时间处理*/
+            userVo.setCeateTime(DateTimeUtil.dateToStr(user.getCreateTime()));
+            userVo.setUpdateTime(DateTimeUtil.dateToStr(user.getUpdateTime()));
+            userVoList.add(userVo);
+        }
+        return userVoList;
+
+
+    }
 
 
     @Override

@@ -11,7 +11,7 @@ public interface ICategoryService {
     /**
      * 1 所有的分类
      */
-    ServerResponse<PageInfo> getProduct();
+    ServerResponse<PageInfo> getCategory();
 
     /**
      * 2 添加分类，注意parentid是区分一级还是二级分类
@@ -27,5 +27,7 @@ public interface ICategoryService {
     ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId);
 
     ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId);
+    /** 6 删除分类*/
+    ServerResponse delete(Integer cid);
 
 }

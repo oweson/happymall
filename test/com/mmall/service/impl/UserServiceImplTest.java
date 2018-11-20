@@ -32,6 +32,12 @@ public class UserServiceImplTest extends BaseClass {
 
         }
         ServerResponse<PageInfo> list = userService.list(0, 2);
+        /**分页数据没问题！！！*/
+        //todo controller测试不通过？？？
+        System.out.println(list.getData().getTotal());
+        System.out.println(list.getData().getList());
+        System.out.println(list.getData().isHasNextPage());
+        System.out.println(list.getData().getList());
         List list1 = list.getData().getList();
         System.out.println(list1);
 

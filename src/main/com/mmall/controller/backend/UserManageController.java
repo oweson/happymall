@@ -18,17 +18,17 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping("/manage/user")
+@RequestMapping("/manage/user/")
 public class UserManageController {
 
     @Autowired
     private IUserService iUserService;
 
     /**
-     * 1 后端管理员的登录,
+     * 1 后端管理员的登录, method = RequestMethod.POST
      */
 
-    @RequestMapping(value = "login.do", method = RequestMethod.POST)
+    @RequestMapping(value = "login.do", method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session) {
         /**1 登陆后得到响应的对象信息；*/

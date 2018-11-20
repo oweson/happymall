@@ -42,7 +42,7 @@ public class UserController {
             /**session中的key就是常量，value就是user数据信息；*/
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
-        //吧json数据返回给前端；
+        /**把json数据返回给前端；*/
         return response;
     }
 
@@ -54,8 +54,8 @@ public class UserController {
     public ServerResponse<String> logout(HttpSession session) {
         session.removeAttribute(Const.CURRENT_USER);
         /**
-         *         session.invalidate();
-         *         所有的session失效
+         *   session.invalidate();
+         *   所有的session失效
          * */
         /**返回成功状态码0；*/
         return ServerResponse.createBySuccess();
@@ -72,7 +72,7 @@ public class UserController {
     }
 
     /**
-     * 4 教研用户名字或者邮箱用于立反馈，输入Input框进行ajax教研，
+     * 4 教研用户名字或者邮箱用于立反馈，输入Input框进行ajax校验，
      * 防止恶心获得注册接口，输入email离开光标，不合适就提示
      */
     @RequestMapping(value = "check_valid.do", method = RequestMethod.POST)
@@ -90,17 +90,18 @@ public class UserController {
     public ServerResponse<User> getUserInfo(HttpSession session) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user != null) {
-            //session中的数据不为null,就取出来穿进去返回user信息给前端；
+            /**session中的数据不为null,就取出来传进去返回user信息给前端；*/
             return ServerResponse.createBySuccess(user);
         }
-        //没有得到信息就是为null，用户没有登录
+        /**没有得到信息就是为null，用户没有登录*/
         return ServerResponse.createByErrorMessage("用户未登录,无法获取当前用户的信息");
     }
 
-
+    /**
+     * 6 只记得用户名密码忘记了根据密保重置密码；得到密保问题。。。。。
+     */
     @RequestMapping(value = "forget_get_question.do", method = RequestMethod.POST)
     @ResponseBody
-    /**6 只记得用户名密码忘记了根据密保重置密码；得到密保问题。。。。。*/
     public ServerResponse<String> forgetGetQuestion(String username) {
         return iUserService.selectQuestion(username);
     }

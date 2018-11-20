@@ -16,8 +16,8 @@
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
-    id, username, password, email, phone, question, answer, role, create_time, update_time
-  </sql>
+        id, username, password, email, phone, question, answer, role, create_time, update_time
+    </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -25,19 +25,19 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from mmall_user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+        delete from mmall_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.mmall.pojo.User">
-    insert into mmall_user (id, username, password, 
-      email, phone, question, 
-      answer, role, create_time, 
-      update_time)
-    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
-      now())
-  </insert>
+        insert into mmall_user (id, username, password,
+                                email, phone, question,
+                                answer, role, create_time,
+                                update_time)
+        values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
+                #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
+                now())
+    </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.User">
         insert into mmall_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -139,33 +139,35 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.User">
-    update mmall_user
-    set username = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      phone = #{phone,jdbcType=VARCHAR},
-      question = #{question,jdbcType=VARCHAR},
-      answer = #{answer,jdbcType=VARCHAR},
-      role = #{role,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = now()
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update mmall_user
+        set username    = #{username,jdbcType=VARCHAR},
+            password    = #{password,jdbcType=VARCHAR},
+            email       = #{email,jdbcType=VARCHAR},
+            phone       = #{phone,jdbcType=VARCHAR},
+            question    = #{question,jdbcType=VARCHAR},
+            answer      = #{answer,jdbcType=VARCHAR},
+            role        = #{role,jdbcType=INTEGER},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = now()
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
     <!--防止sql注入，并且进行预编译#｛｝-->
     <select id="checkUsername" resultType="int" parameterType="string">
-    select count(1) from mmall_user
-    where username = #{username}
-  </select>
+        select count(1)
+        from mmall_user
+        where username = #{username}
+    </select>
 
     <select id="checkEmail" resultType="int" parameterType="string">
-    select count(1) from mmall_user
-    where email = #{email}
-  </select>
+        select count(1)
+        from mmall_user
+        where email = #{email}
+    </select>
 
 
     <select id="selectLogin" resultMap="BaseResultMap" parameterType="string">
-        <!--java.util.Map会自动转换成我们需要的类型；-->
+        <!--java.util.Map会自动转换成我们需要的类型；参数可以是map-->
         SELECT count(1)
         -- *???//这样真的好么?答案就是,这样不好.
         <include refid="Base_Column_List"/>
@@ -176,20 +178,18 @@
 
 
     <select id="selectQuestionByUsername" resultType="string" parameterType="string">
-    select
-    question
-    from mmall_user
-    where username = #{username}
-  </select>
+        select question
+        from mmall_user
+        where username = #{username}
+    </select>
 
     <select id="checkAnswer" resultType="int" parameterType="map">
-    SELECT
-    count(1)
-    from mmall_user
-    where username=#{username}
-    and question = #{question}
-    and answer = #{answer}
-  </select>
+        SELECT count(1)
+        from mmall_user
+        where username = #{username}
+              and question = #{question}
+              and answer = #{answer}
+    </select>
 
     <update id="updatePasswordByUsername" parameterType="map">
         <!--把记录更新的实践记录好；update_time=now() -->
@@ -199,12 +199,11 @@
     </update>
 
     <select id="checkPassword" resultType="int" parameterType="map">
-    SELECT
-    count(1)
-    from mmall_user
-    where password = #{password}
-    and id = #{userId}
-  </select>
+        SELECT count(1)
+        from mmall_user
+        where password = #{password}
+              and id = #{userId}
+    </select>
 
 
     <select id="checkEmailByUserId" resultType="int" parameterType="map">
@@ -214,11 +213,12 @@
         and id != #{userId}
     </select>
     <select id="count" resultType="int">
-    select count(1) from mmall_user
-  </select>
+        select count(1)
+        from mmall_user
+    </select>
     <select id="list" resultMap="BaseResultMap">
         select
-            <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List"/>
         from
         mmall_user
     </select>

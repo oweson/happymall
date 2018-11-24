@@ -78,7 +78,8 @@ public class CategoryManageController {
 
     /**
      * 3 平级的查询如果不传入categoryId，就是查询所有的父级分类；
-     * 传入了父级分类就查询和他平级的所有子分类
+     * 传入了父级分类就查询和他平级的所有父分类；
+     * 相同二级分类的parentId对应一个父分类的id
      */
     @RequestMapping("get_category.do")
     @ResponseBody
@@ -97,7 +98,8 @@ public class CategoryManageController {
     }
 
     /**
-     * 4 递归查询子节点
+     * 4 递归查询子节点，没有传入就默认的查询所有的根节点；
+     * 思路：拿到子节点判断下面是否还有子节点
      */
     @RequestMapping("get_deep_category.do")
     @ResponseBody
@@ -108,7 +110,8 @@ public class CategoryManageController {
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
             //查询当前节点的id和递归子节点的id
-//            0->10000->100000
+            //            0->10000->100000 爷爷-老子--儿子...
+            /**加入传入0，要返回10000和100000，如果传入的是10000要返回100000；*/
             return iCategoryService.selectCategoryAndChildrenById(categoryId);
 
         } else {

@@ -98,7 +98,8 @@ public class Category {
         return !(id != null ? !id.equals(category.id) : category.id != null);
 
     }
-
+     //todo 这里我们仅仅比较了id，我们规定只要id相同就是相同的；、、
+    //todo 工作中保证判断的因子相同否则莫名的错误；两个方法都重写；
     @Override
     public int hashCode() {
         return id != null ? id.hashCode() : 0;

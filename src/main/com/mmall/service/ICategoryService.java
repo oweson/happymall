@@ -24,6 +24,7 @@ public interface ICategoryService {
     ServerResponse updateCategoryName(Integer categoryId, String categoryName);
 
     //todo
+    /** 4 查询平级的分类，父类就都是父类，子分类的id就全部子分类*/
     ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId);
 
     ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId);

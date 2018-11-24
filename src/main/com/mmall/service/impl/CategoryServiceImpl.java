@@ -90,6 +90,7 @@ public class CategoryServiceImpl implements ICategoryService {
     public ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId) {
         /**对传入的id进行查询，并且进行Null判断；*/
         List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
+        /**不仅仅判断了是不是空，还判断了是不是一个空的集合，  0个元素*/
         if (CollectionUtils.isEmpty(categoryList)) {
             logger.info("未找到当前分类的子分类");
         }
@@ -98,12 +99,13 @@ public class CategoryServiceImpl implements ICategoryService {
 
 
     /**
-     * 4 递归查询本节点的id及孩子节点的id
-     *
-     * @param categoryId
-     * @return
+     * 4 递归查询本节点的id及孩子节点的id；
+     * //查询当前节点的id和递归子节点的id
+     * 0->10000->100000 爷爷-老子--儿子...
+     * 加入传入0，要返回10000和100000和0的id，如果传入的是10000要返回100000和本身id；
      */
     public ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId) {
+        Sets.newHashSet();
         Set<Category> categorySet = Sets.newHashSet();
         /**调用下面的递归算法；*/
         findChildCategory(categorySet, categoryId);
@@ -112,7 +114,7 @@ public class CategoryServiceImpl implements ICategoryService {
         List<Integer> categoryIdList = Lists.newArrayList();
         /**递归算法中是直接查询的没有进行null判断*/
         if (categoryId != null) {
-            //如果不为null，进行便利，添加到集合；
+            /**如果不为null，进行遍历，添加到集合；*/
             for (Category categoryItem : categorySet) {
                 categoryIdList.add(categoryItem.getId());
             }
@@ -123,16 +125,23 @@ public class CategoryServiceImpl implements ICategoryService {
 //todo 蒙逼
 
     /**
-     * 递归算法,算出子节点
+     * 递归算法,算出子节点;
+     * 直接用set可以直接去除重复的内容；
+     * set<String>排除重复很好，因为string重写了hashcode()和equals*(;;
+     * 但是我们的返回 类型四category为了去除重复，我们的对象必须重写hashcode()和equals();
      */
     private Set<Category> findChildCategory(Set<Category> categorySet, Integer categoryId) {
         Category category = categoryMapper.selectByPrimaryKey(categoryId);
         if (category != null) {
             categorySet.add(category);
         }
-        //查找子节点,递归算法一定要有一个退出的条件
+        /**查找子节点,平级！！！；
+         * ,递归算法一定要有一个退出的条件*/
+        /**mybatis对集合会处理，即使找不到也不会返回null
+         * 不可预知的就需要进行非空的判断，否则会nullpoint异常；,*/
         List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
         for (Category categoryItem : categoryList) {
+            /**for是递归的结束条件*/
             findChildCategory(categorySet, categoryItem.getId());
         }
         return categorySet;

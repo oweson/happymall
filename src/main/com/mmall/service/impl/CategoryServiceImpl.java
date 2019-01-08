@@ -6,7 +6,6 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.mmall.common.ServerResponse;
 import com.mmall.dao.CategoryMapper;
-import com.mmall.dao.UserMapper;
 import com.mmall.pojo.Category;
 import com.mmall.service.ICategoryService;
 import org.apache.commons.collections.CollectionUtils;
@@ -45,6 +44,7 @@ public class CategoryServiceImpl implements ICategoryService {
     /**
      * 1 对两个参数进行null判断；
      */
+    @Override
     public ServerResponse addCategory(String categoryName, Integer parentId) {
         if (parentId == null || StringUtils.isBlank(categoryName)) {
             return ServerResponse.createByErrorMessage("添加品类参数错误");
@@ -66,6 +66,7 @@ public class CategoryServiceImpl implements ICategoryService {
     /**
      * 2 更新分类信息；
      */
+    @Override
     public ServerResponse updateCategoryName(Integer categoryId, String categoryName) {
         if (categoryId == null || StringUtils.isBlank(categoryName)) {
             return ServerResponse.createByErrorMessage("更新品类参数错误");
@@ -87,6 +88,7 @@ public class CategoryServiceImpl implements ICategoryService {
      * 3 查找当前分类的同一级别的分类；
      * 传入0就是所有的一级分类，二级分类放入parentid就是一级分类的id；
      */
+    @Override
     public ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId) {
         /**对传入的id进行查询，并且进行Null判断；*/
         List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
@@ -104,6 +106,7 @@ public class CategoryServiceImpl implements ICategoryService {
      * 0->10000->100000 爷爷-老子--儿子...
      * 加入传入0，要返回10000和100000和0的id，如果传入的是10000要返回100000和本身id；
      */
+    @Override
     public ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId) {
         Sets.newHashSet();
         Set<Category> categorySet = Sets.newHashSet();

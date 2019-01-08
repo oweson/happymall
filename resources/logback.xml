@@ -6,6 +6,7 @@
             <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!--日志的级别，大于debug的都会显示；sql语句-->
             <level>DEBUG</level>
         </filter>
     </appender>
@@ -14,8 +15,10 @@
         <!--<File>d:/mmalllog/mmall.log</File>-->
         <File>/developer/apache-tomcat-7.0.73/logs/mmall.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--存储的路径-->
             <fileNamePattern>/developer/apache-tomcat-7.0.73/logs/mmall.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
             <append>true</append>
+            <!--就存储十天-->
             <maxHistory>10</maxHistory>
         </rollingPolicy>
         <encoder>
@@ -50,7 +53,7 @@
 
 
 
-    <!-- geelynote mybatis log 日志 -->
+    <!-- geelynote mybatis log 日志，然后dao层的日志就可以查看了 -->
 
     <logger name="com.mmall.dao" level="DEBUG"/>
 

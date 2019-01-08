@@ -47,6 +47,7 @@ public class ProductServiceImpl implements IProductService {
         return ServerResponse.createBySuccess(new PageInfo(products));
     }
 
+    @Override
     public ServerResponse<PageInfo> getProductListByMe(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Product> productList = productMapper.selectList();
@@ -60,6 +61,7 @@ public class ProductServiceImpl implements IProductService {
     /**
      * 1 通用用户操作，保存或者更新操作
      */
+    @Override
     public ServerResponse saveOrUpdateProduct(Product product) {
         /**对传入的商品进行null判断*/
         if (product != null) {
@@ -98,6 +100,7 @@ public class ProductServiceImpl implements IProductService {
     /**
      * 2 更新商品的销售状态，上下架，在售。。。。。
      */
+    @Override
     public ServerResponse<String> setSaleStatus(Integer productId, Integer status) {
         /**对传入的商品的id和状态进行null判断*/
         if (productId == null || status == null) {
@@ -119,6 +122,7 @@ public class ProductServiceImpl implements IProductService {
     /**
      * 2 得到商品的详情信息
      */
+    @Override
     public ServerResponse<ProductDetailVo> manageProductDetail(Integer productId) {
         if (productId == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -169,6 +173,7 @@ public class ProductServiceImpl implements IProductService {
     /**
      * 4 得到商品的所有的列表
      */
+    @Override
     public ServerResponse<PageInfo> getProductList(int pageNum, int pageSize) {
         //startPage--start
         //填充自己的sql查询逻辑
@@ -214,7 +219,7 @@ public class ProductServiceImpl implements IProductService {
     /**
      * 5 分页的搜索，商品
      */
-
+    @Override
     public ServerResponse<PageInfo> searchProduct(String productName, Integer productId, int pageNum, int pageSize) {
         /**根据id或者名字搜索，一方为null不参与条件的拼接*/
         /**进行分页，*/
@@ -243,7 +248,10 @@ public class ProductServiceImpl implements IProductService {
 
     }
 
-  /** 6 商品的详情*/
+    /**
+     * 6 商品的详情
+     */
+    @Override
     public ServerResponse<ProductDetailVo> getProductDetail(Integer productId) {
         if (productId == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -262,7 +270,10 @@ public class ProductServiceImpl implements IProductService {
         return ServerResponse.createBySuccess(productDetailVo);
     }
 
-
+    /**
+     * 7 商品的搜索
+     */
+    @Override
     public ServerResponse<PageInfo> getProductByKeywordCategory(String keyword, Integer categoryId, int pageNum, int pageSize, String orderBy) {
         if (StringUtils.isBlank(keyword) && categoryId == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());

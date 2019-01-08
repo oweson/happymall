@@ -24,6 +24,7 @@ public class ShippingServiceImpl implements IShippingService {
     /**
      * 1 添加收货地址
      */
+    @Override
     public ServerResponse add(Integer userId, Shipping shipping) {
         /**用户的id是从后端拿到的，session哪里拿到的，防止恶心用户攻击，进行设置*/
         shipping.setUserId(userId);
@@ -40,6 +41,7 @@ public class ShippingServiceImpl implements IShippingService {
     /**
      * 2 删除收货地址
      */
+    @Override
     public ServerResponse<String> del(Integer userId, Integer shippingId) {
         int resultCount = shippingMapper.deleteByShippingIdUserId(userId, shippingId);
         if (resultCount > 0) {
@@ -51,6 +53,7 @@ public class ShippingServiceImpl implements IShippingService {
     /**
      * 3 更新收货地址
      */
+    @Override
     public ServerResponse update(Integer userId, Shipping shipping) {
         /**防止传入假的userid,更新别人的地址，必须在登录用户的session中拿到userid*/
         shipping.setUserId(userId);
@@ -65,6 +68,7 @@ public class ShippingServiceImpl implements IShippingService {
     /**
      * 4 查看收货地址
      */
+    @Override
     public ServerResponse<Shipping> select(Integer userId, Integer shippingId) {
         /**防止越权看别人的，修改审查元素；
          * 保证这个用户的收货地址一定是指向这个用户的*/
@@ -79,6 +83,7 @@ public class ShippingServiceImpl implements IShippingService {
     /**
      * 5 查看收货地址的列表
      */
+    @Override
     public ServerResponse<PageInfo> list(Integer userId, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Shipping> shippingList = shippingMapper.selectByUserId(userId);

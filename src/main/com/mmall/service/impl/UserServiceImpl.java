@@ -187,9 +187,9 @@ public class UserServiceImpl implements IUserService {
         if (resultCount > 0) {
             /**生成宇宙之间都不会重复的字符串；*/
             String forgetToken = UUID.randomUUID().toString();
-            /**本地缓存把token放进来了；*/
+            /**本地缓存把token放进来了；第一个是前缀类似命名空间*/
             TokenCache.setKey(TokenCache.TOKEN_PREFIX + username, forgetToken);
-            /**把token进行返回；*/
+            /**把token存入进行返回；*/
             return ServerResponse.createBySuccess(forgetToken);
         }
         /**答案不对；*/
@@ -208,7 +208,8 @@ public class UserServiceImpl implements IUserService {
         /**防止重置别人的密码*/
         ServerResponse validResponse = this.checkValid(username, Const.USERNAME);
         if (validResponse.isSuccess()) {
-            /**复用注册方法，用户不存在；*/
+            /**复用注册方法，用户不存在；
+             * */
             return ServerResponse.createByErrorMessage("用户不存在");
         }
         /**根据key取出缓存中的token；*/
@@ -241,7 +242,8 @@ public class UserServiceImpl implements IUserService {
     public ServerResponse<String> resetPassword(String passwordOld, String passwordNew, User user) {
         /**防止横向越权,要校验一下这个用户的旧密码,一定要指定是这个用户.
          * 因为我们会查询一个count(1),如果不指定id,那么结果就是true啦count>0;
-         * 防止自己不在别人在自己的电脑修改密码;*/
+         * 防止自己不在别人在自己的电脑修改密码;
+         * 防止别人用字典测试这个接口！！！;*/
         int resultCount = userMapper.checkPassword(MD5Util.MD5EncodeUtf8(passwordOld), user.getId());
         if (resultCount == 0) {
             return ServerResponse.createByErrorMessage("旧密码错误");
@@ -257,13 +259,15 @@ public class UserServiceImpl implements IUserService {
     }
 
     /**
-     * 8 更新用户的信息，会传递email question answer....更换
+     * 8 更新用户的信息，会传递email question answer....更换；
+     * 新的用户信息放入session,前端进行展示；
      */
     public ServerResponse<User> updateInformation(User user) {
         /**username是不能被更新的
          email也要进行一个校验,校验新的email是不是已经存在,并且存在的email如果相同的话,
-         不能是我们当前的这个用户的.
-         如果是当前的用户的会逻辑错误！！！如果用户的email不比那话的话就会存在email包错；
+         不能是我们当前的这个用户的.！！！
+         如果是当前的用户的会逻辑错误！！！比如原先的email没有修改！
+         如果用户的email不比那话的话就会存在email报错；
          select email from user where userid!=user_id;新的校验email方法；*/
         int resultCount = userMapper.checkEmailByUserId(user.getEmail(), user.getId());
         if (resultCount > 0) {

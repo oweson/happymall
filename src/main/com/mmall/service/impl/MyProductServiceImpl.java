@@ -37,6 +37,7 @@ public class MyProductServiceImpl implements MyProductService {
     /**
      * 1 分页的显示商品
      */
+    @Override
     public ServerResponse<PageInfo> MyListProduct(Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         List<Product> products = myProductMapper.mylistProduct();
@@ -71,6 +72,7 @@ public class MyProductServiceImpl implements MyProductService {
     /**
      * 2 商品的搜索
      */
+    @Override
     public ServerResponse<PageInfo> mySearchProduct(String productName, Integer productId,
                                                     Integer pageNum, Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -95,6 +97,7 @@ public class MyProductServiceImpl implements MyProductService {
     /**
      * 3 新增或者更新产品
      */
+    @Override
     public ServerResponse saveOrUpdate(Product product) {
         /**不为空这是更新*/
         if (product != null) {
@@ -129,6 +132,7 @@ public class MyProductServiceImpl implements MyProductService {
     /**
      * 4 设置产品的销售状态
      */
+    @Override
     public ServerResponse<String> setStatus(Integer productId, Integer status) {
         if (productId == null || status == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
@@ -148,6 +152,7 @@ public class MyProductServiceImpl implements MyProductService {
     /**
      * 5 得到某个产品的详情
      */
+    @Override
     public ServerResponse<ProductDetailVo> getOneProductDetails(Integer productId) {
         if (productId == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());

@@ -14,12 +14,14 @@
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
+                    <!--很多的编码都制成utf-8-->
                     <list>
                         <value>text/plain;charset=UTF-8</value>
                         <value>text/html;charset=UTF-8</value>
                     </list>
                 </property>
             </bean>
+            <!--自动反序列话的时候的配置类-->
             <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
@@ -38,11 +40,10 @@
     </mvc:interceptors>
 
 
-
-    <!-- 文件上传 -->
+    <!-- 文件上传mvc的 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="10485760"/> <!-- 10m -->
-        <property name="maxInMemorySize" value="4096" />
+        <property name="maxInMemorySize" value="4096"/>
         <property name="defaultEncoding" value="UTF-8"></property>
     </bean>
 

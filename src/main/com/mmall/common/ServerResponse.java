@@ -7,15 +7,22 @@ import java.io.Serializable;
 
 /**
  * Created by geely
+ * <p>
+ * 1T代表这是一个泛型方法
+ * 2T这是一个返回类型；
+ * <p>
+ * 1T代表这是一个泛型方法
+ * 2T这是一个返回类型；
  */
 
 /**
  * 1T代表这是一个泛型方法
  * 2T这是一个返回类型；
  */
-//为null的东西不会返回给前端；
+
+/**为null的东西不会返回给前端；*/
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-//保证序列化json的时候,如果是null的对象,key也会消失
+/**保证序列化json的时候,如果是null的对象,key也会消失*/
 public class ServerResponse<T> implements Serializable {
 
     private int status;
@@ -50,7 +57,8 @@ public class ServerResponse<T> implements Serializable {
     @JsonIgnore
     /**使之不在json序列化结果当中*/
     public boolean isSuccess() {
-        /**当前对象的状态码等于0说明响应是成功的*/
+        /**当前对象的状态码等于0说明响应是成功的;
+         * 返回true;*/
         return this.status == ResponseCode.SUCCESS.getCode();
     }
 

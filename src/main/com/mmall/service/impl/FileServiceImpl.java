@@ -20,7 +20,7 @@ public class FileServiceImpl implements IFileService {
 
     private Logger logger = LoggerFactory.getLogger(FileServiceImpl.class);
 
-
+    @Override
     public String upload(MultipartFile file, String path) {
         /**得到文件的原始文件名*/
         String fileName = file.getOriginalFilename();

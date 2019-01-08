@@ -67,6 +67,7 @@
                 <bean class="com.github.pagehelper.PageHelper">
                     <property name="properties">
                         <value>
+                            <!--方言是mysql-->
                             dialect=mysql
                         </value>
                     </property>
@@ -75,7 +76,7 @@
         </property>
 
     </bean>
-
+     <!--扫描dao层-->
     <bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.mmall.dao"/>
     </bean>

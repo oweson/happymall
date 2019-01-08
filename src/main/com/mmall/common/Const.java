@@ -28,8 +28,12 @@ public class Const {
      * 3 购物车的状态
      */
     public interface Cart {
-        int CHECKED = 1;//即购物车选中状态
-        int UN_CHECKED = 0;//购物车中未选中状态
+        int CHECKED = 1;
+        /**
+         * 即购物车选中状态
+         */
+        int UN_CHECKED = 0;
+        /**购物车中未选中状态**/
         /**
          * 限制成功和失败
          */
@@ -41,10 +45,17 @@ public class Const {
      * 4 角色
      */
     public interface Role {
-        int ROLE_CUSTOMER = 0; //普通用户
-        int ROLE_ADMIN = 1;//管理员
+        int ROLE_CUSTOMER = 0;
+        /**
+         * 普通用户
+         */
+        int ROLE_ADMIN = 1;
+        /**管理员*/
     }
-/** 5 商品的状态，枚举类*/
+
+    /**
+     * 5 商品的状态，枚举类
+     */
     public enum ProductStatusEnum {
         ON_SALE(1, "在线");
         private String value;
@@ -64,7 +75,9 @@ public class Const {
         }
     }
 
-/** 6 订单的枚举类*/
+    /**
+     * 6 订单的枚举类
+     */
     public enum OrderStatusEnum {
         CANCELED(0, "已取消"),
         NO_PAY(10, "未支付"),
@@ -99,7 +112,10 @@ public class Const {
             throw new RuntimeException("么有找到对应的枚举");
         }
     }
-/** 7 阿里的回调接口*/
+
+    /**
+     * 7 阿里的回调接口
+     */
     public interface AlipayCallback {
         String TRADE_STATUS_WAIT_BUYER_PAY = "WAIT_BUYER_PAY";
         String TRADE_STATUS_TRADE_SUCCESS = "TRADE_SUCCESS";
@@ -108,7 +124,9 @@ public class Const {
         String RESPONSE_FAILED = "failed";
     }
 
-/** 8 支付类型*/
+    /**
+     * 8 支付类型
+     */
     public enum PayPlatformEnum {
         ALIPAY(1, "支付宝");
 

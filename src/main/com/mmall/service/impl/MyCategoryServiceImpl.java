@@ -24,6 +24,7 @@ public class MyCategoryServiceImpl implements MyICategoryservice {
     @Autowired
     private CategoryMapper categoryMapper;
 
+    @Override
     public ServerResponse addCategory(String categoryName, Integer parentId) {
 
         if (parentId == null && StringUtils.isBlank(categoryName)) {
@@ -47,7 +48,7 @@ public class MyCategoryServiceImpl implements MyICategoryservice {
     /**
      * 2 更新的service方法
      */
-
+    @Override
     public ServerResponse updateCategoryName(String categoryName, Integer categoryId) {
         if (categoryId == null && StringUtils.isBlank(categoryName)) {
             return ServerResponse.createByErrorMessage("更新品类失败.....");
@@ -72,6 +73,7 @@ public class MyCategoryServiceImpl implements MyICategoryservice {
     /**
      * 3 查询当前的子节点，不递归
      */
+    @Override
     public ServerResponse<List<Category>> getChildrenParelelCategoryId(Integer categoryId) {
         List<Category> categories = categoryMapper.selectCategoryIdChildren(categoryId);
         if (CollectionUtils.isEmpty(categories)) {

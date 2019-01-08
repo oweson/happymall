@@ -153,19 +153,20 @@ public class UserController {
             return ServerResponse.createByErrorMessage("用户未登录");
         }
         /**到了这里，用户登陆了；*/
-        /**为了防止越权传入从session中得到的当前用户的id；*/
+        /**为了防止越权；传入从session中得到的当前用户的id；*/
         user.setId(currentUser.getId());
         /**为了防止越权传入从session中得到的当前用户的名字；*/
+        //todo 下面的估计是多余的
         user.setUsername(currentUser.getUsername());
         ServerResponse<User> response = iUserService.updateInformation(user);
         //true更新信息成功了；通过比较成功状态码
         //更新session中的信息；
         //response.getData就是user对象的信息；
         if (response.isSuccess()) {
-            //要返回的信息需要userName否则session中就没有UserName了；
-            //得到当前用户的userName设置进去；进行返回：
+            /**要返回的信息需要userName否则session中就没有UserName了；
+             得到当前用户的userName设置进去；进行返回：*/
             response.getData().setUsername(currentUser.getUsername());
-            //            //返回user信息给前端；
+            //返回user信息给前端；
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
         //到了这里就是更新信息失败了；

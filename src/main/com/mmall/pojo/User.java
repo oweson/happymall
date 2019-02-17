@@ -1,9 +1,12 @@
 package com.mmall.pojo;
 
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
+
 public class User {
     /**用户表*/
     private Integer id;
@@ -39,9 +42,7 @@ public class User {
         this.updateTime = updateTime;
     }
 
-    public User() {
-        super();
-    }
+
 
     public Integer getId() {
         return id;

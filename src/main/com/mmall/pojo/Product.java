@@ -11,7 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class Product {
     private Integer id;
-
+    /** 1 某个分类下的商品*/
     private Integer categoryId;
 
     private String name;

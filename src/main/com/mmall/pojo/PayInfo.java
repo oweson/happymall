@@ -11,9 +11,13 @@ import java.util.Date;
 @Data
 public class PayInfo {
     private Integer id;
-
+    /**
+     * 1 支付人
+     */
     private Integer userId;
-
+    /**
+     * 2 支付的订单号
+     */
     private Long orderNo;
 
     private Integer payPlatform;

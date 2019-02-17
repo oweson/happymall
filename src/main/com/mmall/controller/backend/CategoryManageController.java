@@ -36,9 +36,9 @@ public class CategoryManageController {
      */
     @RequestMapping("add_category.do")
     @ResponseBody
-    /** 判断当前用户是否登录，session是有效期限的，不传入parentId就是一级分类*/
+    /**  判断当前用户是否登录，session是有效期限的，不传入parentId就是一级分类*/
     public ServerResponse addCategory(HttpSession session, String categoryName, @RequestParam(value = "parentId", defaultValue = "0") int parentId) {
-        /**从session中得到当前用户*/
+        /** 从session中得到当前用户*/
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {
             /**如果用户为Null说明用户为登录，返回需要登录状态码*/

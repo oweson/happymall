@@ -12,11 +12,17 @@ import java.util.Date;
 @NoArgsConstructor
 public class Order {
     private Integer id;
-
+    /**
+     * 1 订单号
+     */
     private Long orderNo;
-
+    /**
+     * 2 订单的主人
+     */
     private Integer userId;
-
+    /**
+     * 3 购物车的id
+     */
     private Integer shippingId;
 
     private BigDecimal payment;

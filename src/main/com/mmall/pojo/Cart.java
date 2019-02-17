@@ -12,9 +12,13 @@ import java.util.Date;
 @NoArgsConstructor
 public class Cart {
     private Integer id;
-
+    /**
+     * 1 购物车的主人
+     */
     private Integer userId;
-
+    /**
+     * 2 购物车的商品
+     */
     private Integer productId;
 
     private Integer quantity;

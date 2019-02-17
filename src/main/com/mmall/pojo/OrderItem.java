@@ -12,10 +12,18 @@ import java.util.Date;
 @NoArgsConstructor
 public class OrderItem {
     private Integer id;
-
+    /**
+     * 1 一个订单项归属一个订单，一个订单对应多个订单项
+     */
     private Long orderNo;
-
+    /**
+     * 2 商品的id，一个订单项关于具体哪个商品的具体信息
+     */
     private Integer productId;
+    /**
+     * 3 某个订单项的主人
+     */
+    private Integer userId;
 
     private String productName;
 
@@ -31,7 +39,5 @@ public class OrderItem {
 
     private Date updateTime;
 
-    private Integer userId;
 
-    
 }

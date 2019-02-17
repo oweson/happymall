@@ -25,7 +25,6 @@ public class CountController {
     @RequestMapping("/count.do")
     @ResponseBody
     public ServerResponse<CountVo> count() {
-        ServerResponse<CountVo> count = countNumber.count();
-        return count;
+        return countNumber.count();
     }
 }

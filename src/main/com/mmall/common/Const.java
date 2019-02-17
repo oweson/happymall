@@ -1,11 +1,13 @@
 package com.mmall.common;
 
 import com.google.common.collect.Sets;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.Set;
 
 /**
- * Created by geely
+ * Created by oweson
  */
 public class Const {
     /**
@@ -32,6 +34,7 @@ public class Const {
         /**
          * 即购物车选中状态
          */
+
         int UN_CHECKED = 0;
         /**购物车中未选中状态**/
         /**
@@ -56,23 +59,20 @@ public class Const {
     /**
      * 5 商品的状态，枚举类
      */
+    @Getter
+    @AllArgsConstructor
     public enum ProductStatusEnum {
         ON_SALE(1, "在线");
-        private String value;
+        /**
+         * 1 代码
+         */
         private int code;
+        /**
+         * 2 值
+         */
+        private String value;
 
-        ProductStatusEnum(int code, String value) {
-            this.code = code;
-            this.value = value;
-        }
 
-        public String getValue() {
-            return value;
-        }
-
-        public int getCode() {
-            return code;
-        }
     }
 
     /**

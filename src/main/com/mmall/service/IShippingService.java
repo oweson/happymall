@@ -3,7 +3,11 @@ package com.mmall.service;
 import com.github.pagehelper.PageInfo;
 import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Shipping;
-
+/**
+ * the class is create by @Author:oweson
+ *
+ * @Date：2018/9/4 0004 16:13
+ */
 
 public interface IShippingService {
 

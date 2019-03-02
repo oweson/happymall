@@ -13,7 +13,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * the class is create by @Author:oweson
+ *
+ * @Date：2018/9/5 0005 14:37
+ */
 @Service("iShippingService")
 public class ShippingServiceImpl implements IShippingService {
 
@@ -31,7 +35,8 @@ public class ShippingServiceImpl implements IShippingService {
         int rowCount = shippingMapper.insert(shipping);
         if (rowCount > 0) {
             Map result = Maps.newHashMap();
-            /**添加成功后返回收货地址的id给前端,让用户看到添加成功了*/
+            /**添加成功后返回收货地址的id给前端,让用户看到添加成功了；
+             *前端需要生成的sjippingId*/
             result.put("shippingId", shipping.getId());
             return ServerResponse.createBySuccess("新建地址成功", result);
         }
@@ -55,7 +60,8 @@ public class ShippingServiceImpl implements IShippingService {
      */
     @Override
     public ServerResponse update(Integer userId, Shipping shipping) {
-        /**防止传入假的userid,更新别人的地址，必须在登录用户的session中拿到userid*/
+        /**根据用户的id,和对象进行更新，用户的id从session中拿到
+         * 防止传入假的userid,更新别人的地址，必须充登录用户的sessionn中拿到userid*/
         shipping.setUserId(userId);
         int rowCount = shippingMapper.updateByShipping(shipping);
         if (rowCount > 0) {
@@ -71,7 +77,8 @@ public class ShippingServiceImpl implements IShippingService {
     @Override
     public ServerResponse<Shipping> select(Integer userId, Integer shippingId) {
         /**防止越权看别人的，修改审查元素；
-         * 保证这个用户的收货地址一定是指向这个用户的*/
+         * 保证这个用户的收货地址一定是指向这个用户的；
+         * 查询根据自己的用户的id，去查询自己下面的收货地址详情，id是自己的，防止虚假的*/
         Shipping shipping = shippingMapper.selectByShippingIdUserId(userId, shippingId);
         if (shipping == null) {
             return ServerResponse.createByErrorMessage("无法查询到该地址");

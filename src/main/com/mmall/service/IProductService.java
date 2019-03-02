@@ -5,7 +5,11 @@ import com.mmall.common.ServerResponse;
 import com.mmall.pojo.Product;
 import com.mmall.vo.ProductDetailVo;
 
-
+/**
+ * the class is create by @Author:oweson
+ *
+ * @Date：2018/8/25 0025 16:21
+ */
 public interface IProductService {
     ServerResponse<PageInfo> getProductListByMe(int pageNum, int pageSize);
 

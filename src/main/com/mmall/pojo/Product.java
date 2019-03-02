@@ -6,12 +6,15 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
     private Integer id;
-    /** 1 某个分类下的商品*/
+    /**
+     * 1 某个分类下的商品
+     */
     private Integer categoryId;
 
     private String name;

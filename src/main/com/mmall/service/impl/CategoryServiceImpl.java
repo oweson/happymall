@@ -79,6 +79,7 @@ public class CategoryServiceImpl implements ICategoryService {
         int rowCount = categoryMapper.updateByPrimaryKeySelective(category);
         /**判断返回受影响的行数；是否成功；*/
         if (rowCount > 0) {
+            /**不要忘记了return*/
             return ServerResponse.createBySuccess("更新品类名字成功");
         }
         return ServerResponse.createByErrorMessage("更新品类名字失败");

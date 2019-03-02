@@ -8,14 +8,24 @@ import com.mmall.pojo.Shipping;
 import com.mmall.pojo.User;
 import com.mmall.service.IShippingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
-
+/**
+ * the class is create by @Author:oweson
+ *
+ * @Date：2018/9/4 0004 18:02
+ */
 @Controller
 @RequestMapping("/shipping/")
 public class ShippingController {
@@ -24,6 +34,21 @@ public class ShippingController {
     @Autowired
     private IShippingService iShippingService;
 
+    @RequestMapping("/ppx.do")
+    @ResponseBody
+    public Object ppx(HttpRequest request) {
+        Map<String, Object> map = new HashMap();
+        HttpMethod method = request.getMethod();
+        URI uri = request.getURI();
+        HttpHeaders headers = request.getHeaders();
+        map.put("1", method);
+        map.put("2", uri);
+        map.put("3", headers);
+        return map;
+
+
+    }
+
     /**
      * 1 添加收货地址
      */
@@ -31,6 +56,7 @@ public class ShippingController {
     @ResponseBody
     public ServerResponse add(HttpSession session, Shipping shipping) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
+        /**判断是否登录,session中得到，是不是本人，到了这里一定已经登录*/
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }

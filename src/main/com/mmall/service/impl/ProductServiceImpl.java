@@ -24,7 +24,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by geely
+ * the class is create by @Author:oweson
+ *
+ * @Date：2018/9/5 0005 14:38
  */
 @Service("iProductService")
 public class ProductServiceImpl implements IProductService {

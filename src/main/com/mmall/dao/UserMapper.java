@@ -42,7 +42,7 @@ public interface UserMapper {
     User selectLogin(@Param("username") String username, @Param("password") String password);
 
     /**
-     * 4 根据姓名查找哦密保问题
+     * 4 根据姓名查找用户的密保问题
      */
     String selectQuestionByUsername(String username);
 
@@ -57,8 +57,14 @@ public interface UserMapper {
      */
     int updatePasswordByUsername(@Param("username") String username, @Param("passwordNew") String passwordNew);
 
+    /**
+     * 7 检查旧的密码是不是这个用户的
+     */
     int checkPassword(@Param(value = "password") String password, @Param("userId") Integer userId);
 
+    /**
+     * 8 校验邮箱，更新的时候，不是之前的
+     */
     int checkEmailByUserId(@Param(value = "email") String email, @Param(value = "userId") Integer userId);
 
     int count();

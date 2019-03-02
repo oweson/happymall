@@ -30,7 +30,8 @@ public class ProductController {
      * keyword/{keyword}进行制定！！！------keyword定位了list方法！！！
      * http://localhost:9090//product/keyword/%E6%89%8B%E6%9C%BA/100012/1/2/price_dsc
      */
-    @RequestMapping(value = "keyword/{keyword}/{categoryId}/{pageNum}/{pageSize}/{orderBy}", method = RequestMethod.GET)
+    @RequestMapping(value = "keyword/{keyword}/{categoryId}/{pageNum}/{pageSize}/{orderBy}",
+            method = RequestMethod.GET)
     @ResponseBody
     public ServerResponse<PageInfo> list(@PathVariable(value = "keyword") String keyword,
                                          @PathVariable(value = "categoryId") Integer categoryId,

@@ -11,7 +11,9 @@ import java.util.Date;
 @NoArgsConstructor
 public class Shipping {
     private Integer id;
-   /** 1 购物车归属*/
+    /**
+     * 1 购物车归属某一个人的
+     */
     private Integer userId;
 
     private String receiverName;

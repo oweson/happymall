@@ -6,7 +6,11 @@ import com.mmall.vo.OrderVo;
 
 import java.util.Map;
 
-
+/**
+ * the class is create by @Author:oweson
+ *
+ * @Date：2018/8/25 0025 10:38
+ */
 public interface IOrderService {
     ServerResponse pay(Long orderNo, Integer userId, String path);
     ServerResponse aliCallback(Map<String, String> params);

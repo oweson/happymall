@@ -5,6 +5,11 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * the class is create by @Author:oweson
+ *
+ * @Date：2018/9/5 0005 14:39
+ */
 public interface ProductMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -25,6 +30,7 @@ public interface ProductMapper {
     List<Product> selectByNameAndProductId(@Param("productName") String productName, @Param("productId") Integer productId);
 
     List<Product> selectByNameAndCategoryIds(@Param("productName") String productName, @Param("categoryIdList") List<Integer> categoryIdList);
+
     int count();
 
 

@@ -128,6 +128,7 @@ public class Const {
      * 8 支付类型
      */
     public enum PayPlatformEnum {
+        /** 支付方式*/
         ALIPAY(1, "支付宝");
 
         PayPlatformEnum(int code, String value) {

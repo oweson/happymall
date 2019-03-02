@@ -4,7 +4,11 @@ import com.mmall.pojo.Order;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+/**
+ * the class is create by @Author:oweson
+ *
+ * @Date：2018/9/5 0005 14:39
+ */
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);
 

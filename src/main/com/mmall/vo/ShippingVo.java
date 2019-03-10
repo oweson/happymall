@@ -2,9 +2,6 @@ package com.mmall.vo;
 
 import lombok.Data;
 
-/**
- * Created by geely
- */
 @Data
 public class ShippingVo {
     private String receiverName;

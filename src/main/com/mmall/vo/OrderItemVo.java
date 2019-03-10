@@ -4,12 +4,11 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 
-/**
- * Created by geely
- */
 @Data
 public class OrderItemVo {
-
+    /**
+     * 订单项
+     */
     private Long orderNo;
 
     private Integer productId;

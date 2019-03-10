@@ -3,10 +3,6 @@ package com.mmall.vo;
 import lombok.Data;
 
 import java.math.BigDecimal;
-
-/**
- * Created by geely
- */
 @Data
 public class ProductListVo {
     /*** "id": 2,

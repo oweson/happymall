@@ -67,6 +67,7 @@ public class CartServiceImpl implements ICartService {
     /**
      * 2 更新购物车
      */
+    @Override
     public ServerResponse<CartVo> update(Integer userId, Integer productId, Integer count) {
         if (productId == null || count == null) {
             /**参数不合法，立刻返回*/

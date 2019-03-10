@@ -32,7 +32,9 @@ public class OrderVo {
 
     private String createTime;
 
-    //订单的明细
+    /**
+     * 订单的明细
+     */
     private List<OrderItemVo> orderItemVoList;
 
     private String imageHost;
@@ -41,5 +43,5 @@ public class OrderVo {
 
     private ShippingVo shippingVo;
 
-    
+
 }

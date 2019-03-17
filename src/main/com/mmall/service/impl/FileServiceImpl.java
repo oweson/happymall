@@ -12,9 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-/**
- * Created by geely
- */
+
 @Service("iFileService")
 public class FileServiceImpl implements IFileService {
 
@@ -36,7 +34,8 @@ public class FileServiceImpl implements IFileService {
             /**赋予可写的权限*/
             fileDir.setWritable(true);
             /**文件不存在进行创建*/
-            fileDir.mkdirs();///a/a/c/d文件夹都可以创建；
+            fileDir.mkdirs();
+            ///a/a/c/d文件夹都可以创建；
         }
         /**路径和文件名到目标文件*/
         File targetFile = new File(path, uploadFileName);

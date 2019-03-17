@@ -18,9 +18,9 @@
         </constructor>
     </resultMap>
     <sql id="Base_Column_List">
-    id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, receiver_city, 
-    receiver_district, receiver_address, receiver_zip, create_time, update_time
-  </sql>
+        id, user_id, receiver_name, receiver_phone, receiver_mobile, receiver_province, receiver_city,
+        receiver_district, receiver_address, receiver_zip, create_time, update_time
+    </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -28,21 +28,23 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from mmall_shipping
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+        delete from mmall_shipping
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="com.mmall.pojo.Shipping" useGeneratedKeys="true" keyProperty="id">
-    insert into mmall_shipping (id, user_id, receiver_name, 
-      receiver_phone, receiver_mobile, receiver_province, 
-      receiver_city, receiver_district, receiver_address, 
-      receiver_zip, create_time, update_time
-      )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
-      #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, 
-      #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
-      #{receiverZip,jdbcType=VARCHAR}, now(), now()
-      )
-  </insert>
+        insert into mmall_shipping (id, user_id, receiver_name,
+                                    receiver_phone, receiver_mobile, receiver_province,
+                                    receiver_city, receiver_district, receiver_address,
+                                    receiver_zip, create_time, update_time
+        )
+        values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR},
+                                        #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR},
+                                        #{receiverProvince,jdbcType=VARCHAR},
+                                        #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR},
+                                        #{receiverAddress,jdbcType=VARCHAR},
+                                        #{receiverZip,jdbcType=VARCHAR}, now(), now()
+        )
+    </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.Shipping">
         insert into mmall_shipping
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -162,26 +164,27 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.mmall.pojo.Shipping">
-    update mmall_shipping
-    set user_id = #{userId,jdbcType=INTEGER},
-      receiver_name = #{receiverName,jdbcType=VARCHAR},
-      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
-      receiver_mobile = #{receiverMobile,jdbcType=VARCHAR},
-      receiver_province = #{receiverProvince,jdbcType=VARCHAR},
-      receiver_city = #{receiverCity,jdbcType=VARCHAR},
-      receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
-      receiver_address = #{receiverAddress,jdbcType=VARCHAR},
-      receiver_zip = #{receiverZip,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = now()
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update mmall_shipping
+        set user_id           = #{userId,jdbcType=INTEGER},
+            receiver_name     = #{receiverName,jdbcType=VARCHAR},
+            receiver_phone    = #{receiverPhone,jdbcType=VARCHAR},
+            receiver_mobile   = #{receiverMobile,jdbcType=VARCHAR},
+            receiver_province = #{receiverProvince,jdbcType=VARCHAR},
+            receiver_city     = #{receiverCity,jdbcType=VARCHAR},
+            receiver_district = #{receiverDistrict,jdbcType=VARCHAR},
+            receiver_address  = #{receiverAddress,jdbcType=VARCHAR},
+            receiver_zip      = #{receiverZip,jdbcType=VARCHAR},
+            create_time       = #{createTime,jdbcType=TIMESTAMP},
+            update_time       = now()
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
     <delete id="deleteByShippingIdUserId" parameterType="map">
-    DELETE  FROM  mmall_shipping
-    where id = #{shippingId}
-    and user_id = #{userId}
-  </delete>
+        <!--确保是本人在操作-->
+        DELETE FROM mmall_shipping
+        where id = #{shippingId}
+        and user_id = #{userId}
+    </delete>
 
     <update id="updateByShipping" parameterType="com.mmall.pojo.Shipping">
         <!--根据用户的id对收货地址进行更新，来自insert的通用sql,但是首行的用户id是不可以修改的，
@@ -205,6 +208,7 @@
 
 
     <select id="selectByShippingIdUserId" resultMap="BaseResultMap" parameterType="map">
+        <!--查看收货地址，一定是登录，本人在操作；-->
         SELECT
         <include refid="Base_Column_List"/>
         from mmall_shipping

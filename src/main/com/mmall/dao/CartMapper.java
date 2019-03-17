@@ -22,10 +22,6 @@ public interface CartMapper {
 
     List<Cart> selectCartByUserId(Integer userId);
 
-    /**
-     * 自己的
-     */
-    List<Cart> MyselectCartByUserId(Integer userId);
 
     int selectCartProductCheckedStatusByUserId(Integer userId);
 
@@ -37,14 +33,13 @@ public interface CartMapper {
     /**
      * 检购里的商品全还没选
      */
-    //int MtCheckedOrUncheckedProduct(@Param("userId") Integer userId,);
 
     int selectCartProductCount(@Param("userId") Integer userId);
 
-       /**根据用户的id,所有选中的购物车*/
+    /**
+     * 根据用户的id,所有选中的购物车
+     */
     List<Cart> selectCheckedCartByUserId(Integer userId);
-
-    List<Cart> MySelectCheckedCartByUserId(Integer userId);
 
 
 }

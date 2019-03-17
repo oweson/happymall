@@ -11,9 +11,7 @@ import com.mmall.vo.ProductDetailVo;
  * @Date：2018/8/25 0025 16:21
  */
 public interface IProductService {
-    ServerResponse<PageInfo> getProductListByMe(int pageNum, int pageSize);
 
-    ServerResponse<PageInfo> getProductPageTest(int pageNum, int pageSize);
 
     /**
      * 1 保存或者更新商品

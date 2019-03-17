@@ -207,6 +207,7 @@ public class OrderServiceImpl implements IOrderService {
         for (OrderItem orderItem : orderItemList) {
             Product product = productMapper.selectByPrimaryKey(orderItem.getProductId());
             product.setStock(product.getStock() - orderItem.getQuantity());
+            /**新的库存数量重新入库*/
             productMapper.updateByPrimaryKeySelective(product);
         }
     }
@@ -297,7 +298,7 @@ public class OrderServiceImpl implements IOrderService {
      * 11 取消订单
      */
     public ServerResponse<String> cancel(Integer userId, Long orderNo) {
-        /**通过用户id和订单id查询这个订单*/
+        /**通过用户id和订单id查询这个订单是不是存在*/
         Order order = orderMapper.selectByUserIdAndOrderNo(userId, orderNo);
         if (order == null) {
             return ServerResponse.createByErrorMessage("该用户此订单不存在");

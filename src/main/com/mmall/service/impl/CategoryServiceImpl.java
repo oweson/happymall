@@ -42,7 +42,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     /**
-     * 1 对两个参数进行null判断；
+     * 2 添加分类，对两个参数进行null判断；
      */
     @Override
     public ServerResponse addCategory(String categoryName, Integer parentId) {
@@ -64,7 +64,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     /**
-     * 2 更新分类信息；
+     * 3 更新分类信息；
      */
     @Override
     public ServerResponse updateCategoryName(Integer categoryId, String categoryName) {
@@ -86,7 +86,7 @@ public class CategoryServiceImpl implements ICategoryService {
     }
 
     /**
-     * 3 查找当前分类的同一级别的分类；
+     * 4 查找当前分类的同一级别的分类；
      * 传入0就是所有的一级分类，二级分类放入parentid就是一级分类的id；
      */
     @Override
@@ -102,7 +102,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
 
     /**
-     * 4 递归查询本节点的id及孩子节点的id；
+     * 5 递归查询本节点的id及孩子节点的id；
      * //查询当前节点的id和递归子节点的id
      * 0->10000->100000 爷爷-老子--儿子...
      * 加入传入0，要返回10000和100000和0的id，如果传入的是10000要返回100000和本身id；
@@ -129,7 +129,7 @@ public class CategoryServiceImpl implements ICategoryService {
 //todo 蒙逼
 
     /**
-     * 递归算法,算出子节点;
+     * 6 递归算法,算出子节点;
      * 直接用set可以直接去除重复的内容；
      * set<String>排除重复很好，因为string重写了hashcode()和equals*(;;
      * 但是我们的返回 类型四category为了去除重复，我们的对象必须重写hashcode()和equals();
@@ -151,6 +151,9 @@ public class CategoryServiceImpl implements ICategoryService {
         return categorySet;
     }
 
+    /**
+     * 7  删除分类
+     */
     @Override
     public ServerResponse delete(Integer cid) {
         int i = categoryMapper.deleteByPrimaryKey(cid);

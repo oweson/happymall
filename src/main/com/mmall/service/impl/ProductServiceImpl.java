@@ -41,24 +41,6 @@ public class ProductServiceImpl implements IProductService {
     @Autowired
     private ICategoryService iCategoryService;
 
-    @Override
-    public ServerResponse<PageInfo> getProductPageTest(int pageNum, int pageSize) {
-        PageHelper.startPage(1, 2);
-        List<Product> products = productMapper.MyPageTest();
-
-        return ServerResponse.createBySuccess(new PageInfo(products));
-    }
-
-    @Override
-    public ServerResponse<PageInfo> getProductListByMe(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<Product> productList = productMapper.selectList();
-
-        PageInfo pageInfo = new PageInfo(productList);
-        //pageInfo.setList(productList);
-        return ServerResponse.createBySuccess(pageInfo);
-
-    }
 
     /**
      * 1 通用用户操作，保存或者更新操作
@@ -77,7 +59,8 @@ public class ProductServiceImpl implements IProductService {
                     product.setMainImage(subImageArray[0]);
                 }
             }
-            /**假如到了这里！商品不为空，商品的id存在，说明是更新操作*/
+            /**假如到了这里！商品不为空，商品的id存在，
+             * 说明是更新操作*/
             if (product.getId() != null) {
                 /**进行更新并且返回受影响的行数*/
                 int rowCount = productMapper.updateByPrimaryKey(product);
@@ -122,13 +105,14 @@ public class ProductServiceImpl implements IProductService {
     }
 
     /**
-     * 2 得到商品的详情信息
+     * 3 得到商品的详情信息
      */
     @Override
     public ServerResponse<ProductDetailVo> manageProductDetail(Integer productId) {
         if (productId == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
+        /**一件商品有的时候会下架*/
         Product product = productMapper.selectByPrimaryKey(productId);
         if (product == null) {
             return ServerResponse.createByErrorMessage("产品已下架或者删除");
@@ -138,7 +122,7 @@ public class ProductServiceImpl implements IProductService {
     }
 
     /**
-     * 3 返回商品的列表
+     * 4 返回商品的列表
      */
     private ProductDetailVo assembleProductDetailVo(Product product) {
         //todo 属性拷贝怎么样？？？
@@ -156,7 +140,7 @@ public class ProductServiceImpl implements IProductService {
         productDetailVo.setStock(product.getStock());
 
         productDetailVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix", "http://img.happymmall.com/"));
-/**category找不到说明就是id为0，就是根节点；为0*/
+        /**category找不到说明就是id为0，就是根节点；为0*/
         Category category = categoryMapper.selectByPrimaryKey(product.getCategoryId());
         if (category == null) {
             productDetailVo.setParentCategoryId(0);
@@ -173,7 +157,7 @@ public class ProductServiceImpl implements IProductService {
 
 
     /**
-     * 4 得到商品的所有的列表
+     * 5 得到商品的所有的列表
      */
     @Override
     public ServerResponse<PageInfo> getProductList(int pageNum, int pageSize) {
@@ -219,7 +203,7 @@ public class ProductServiceImpl implements IProductService {
 
 
     /**
-     * 5 分页的搜索，商品
+     * 6 分页的搜索，商品
      */
     @Override
     public ServerResponse<PageInfo> searchProduct(String productName, Integer productId, int pageNum, int pageSize) {
@@ -238,12 +222,12 @@ public class ProductServiceImpl implements IProductService {
             ProductListVo productListVo = assembleProductListVo(productItem);
             productListVoList.add(productListVo);
         }
-        /**代码复用上一次的代码；*/
-        /**把得到的商品信息进行封装*/
-        /**根据集合进行分页的处理*/
         PageInfo pageResult = new PageInfo(productList);
-        /**不是吧查询到的所有数据给前端，但是还需要分页
-         * */
+
+        /**代码复用上一次的代码；把得到的商品信息进行封装
+         根据集合进行分页的处理
+         不是吧查询到的所有数据给前端，但是还需要分页
+         **/
         pageResult.setList(productListVoList);
         /**把列表重置就是需要显示的结果*/
         return ServerResponse.createBySuccess(pageResult);

@@ -4,6 +4,7 @@ import com.mmall.pojo.Order;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+
 /**
  * the class is create by @Author:oweson
  *
@@ -22,16 +23,19 @@ public interface OrderMapper {
 
     int updateByPrimaryKey(Order record);
 
+    /**
+     * 查询用户的订单号
+     */
     Order selectByUserIdAndOrderNo(@Param("userId") Integer userId, @Param("orderNo") Long orderNo);
 
 
     Order selectByOrderNo(Long orderNo);
 
 
-
     List<Order> selectByUserId(Integer userId);
 
 
     List<Order> selectAllOrder();
+
     int count();
 }

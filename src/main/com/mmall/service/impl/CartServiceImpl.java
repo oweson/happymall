@@ -43,20 +43,19 @@ public class CartServiceImpl implements ICartService {
 /** 根据用户的id和商品的id进行查询；*/
         Cart cart = cartMapper.selectCartByUserIdProductId(userId, productId);
         if (cart == null) {
-            /**这个产品不在这个购物车里,
-             * 需要新增一个这个产品的记录*/
+            /**这个产品不在这个购物车里,需要新增一个这个产品的记录--订单项*/
             Cart cartItem = new Cart();
             cartItem.setQuantity(count);
             /**默认在购物车里面是选中的；*/
             cartItem.setChecked(Const.Cart.CHECKED);
             cartItem.setProductId(productId);
+            /**订单项的归属*/
             cartItem.setUserId(userId);
             cartMapper.insert(cartItem);
         } else {
-            /**这个产品已经在购物车里了.
-             * 如果产品已存在,吧数量相加*/
+            /**这个产品已经在购物车里了.如果产品已存在,数量相加；旧的加新的*/
             count = cart.getQuantity() + count;
-            /**吧新的数量进行相加，从新更新到数据库*/
+            /**新的数量进行相加，从新更新到数据库*/
             cart.setQuantity(count);
             /**进行更新操作；*/
             cartMapper.updateByPrimaryKeySelective(cart);

@@ -207,7 +207,7 @@
 
 
     <select id="checkEmailByUserId" resultType="int" parameterType="map">
-        <!--userId当前用户的id,出了自己的id其他的数据进行查询教研email是否已经存在-->
+        <!--userId当前用户的id,除了自己的id其他的数据进行查询校验email是否已经存在-->
         select count(1) from mmall_user
         where email = #{email}
         and id != #{userId}

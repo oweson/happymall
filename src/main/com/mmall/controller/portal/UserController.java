@@ -38,8 +38,9 @@ public class UserController {
     public ServerResponse<User> login(String username, String password, HttpSession session) {
         ServerResponse<User> response = iUserService.login(username, password);
         if (response.isSuccess()) {
-            /**仅仅登录，得到对象的状态码等于成功的状态码说明登录成功，吧得到的user数据放到session中*/
-            /**session中的key就是常量，value就是user数据信息；*/
+            /**仅仅登录，得到对象的状态码等于成功的状态码说明登录成功，
+             吧得到的user数据放到session中
+            session中的key就是常量，value就是user数据信息；*/
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
         /**把json数据返回给前端；*/

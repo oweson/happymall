@@ -87,7 +87,9 @@ public class CategoryServiceImpl implements ICategoryService {
 
     /**
      * 4 查找当前分类的同一级别的分类；
-     * 传入0就是所有的一级分类，二级分类放入parentid就是一级分类的id；
+     * 传入0就是查询所有的一级分类，
+     * 传入parentId=100001就代表同级别的二级分类查询；
+     * 二级分类存储parentid就是一级分类的id；
      */
     @Override
     public ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId) {
@@ -96,6 +98,7 @@ public class CategoryServiceImpl implements ICategoryService {
         /**不仅仅判断了是不是空，还判断了是不是一个空的集合，  0个元素*/
         if (CollectionUtils.isEmpty(categoryList)) {
             logger.info("未找到当前分类的子分类");
+            logger.info("找也找不到了......");
         }
         return ServerResponse.createBySuccess(categoryList);
     }
@@ -109,7 +112,6 @@ public class CategoryServiceImpl implements ICategoryService {
      */
     @Override
     public ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId) {
-        Sets.newHashSet();
         Set<Category> categorySet = Sets.newHashSet();
         /**调用下面的递归算法；*/
         findChildCategory(categorySet, categoryId);

@@ -8,5 +8,6 @@ package com.mmall;
 public class JingNing {
     public static void main(String[] args) {
         System.out.println("南京");
+        System.out.println("广州");
     }
 }

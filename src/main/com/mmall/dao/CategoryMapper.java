@@ -17,6 +17,9 @@ public interface CategoryMapper {
 
     int updateByPrimaryKey(Category record);
 
+    /**
+     * 根据一级父分类的id查询它下面的子分类集合
+     */
     List<Category> selectCategoryChildrenByParentId(Integer parentId);
 
     List<Category> selectCategoryIdChildren(Integer parentId);

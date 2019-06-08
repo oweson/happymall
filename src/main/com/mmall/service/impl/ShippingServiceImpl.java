@@ -30,7 +30,7 @@ public class ShippingServiceImpl implements IShippingService {
      */
     @Override
     public ServerResponse add(Integer userId, Shipping shipping) {
-        /**用户的id是从后端拿到的，session哪里拿到的，防止恶心用户攻击，进行设置*/
+        /**用户的id是从后端拿到的，session哪里拿到的，防止恶意用户攻击，进行设置*/
         shipping.setUserId(userId);
         int rowCount = shippingMapper.insert(shipping);
         if (rowCount > 0) {
@@ -61,7 +61,7 @@ public class ShippingServiceImpl implements IShippingService {
     @Override
     public ServerResponse update(Integer userId, Shipping shipping) {
         /**根据用户的id,和对象进行更新，用户的id从session中拿到
-         * 防止传入假的userid,更新别人的地址，必须充登录用户的sessionn中拿到userid*/
+         * 防止传入假的userid,更新别人的地址，必须充登录用户的session中拿到userid*/
         shipping.setUserId(userId);
         int rowCount = shippingMapper.updateByShipping(shipping);
         if (rowCount > 0) {
@@ -83,7 +83,6 @@ public class ShippingServiceImpl implements IShippingService {
         if (shipping == null) {
             return ServerResponse.createByErrorMessage("无法查询到该地址");
         }
-        //todo 提示信息
         return ServerResponse.createBySuccess("查找地址成功", shipping);
     }
 

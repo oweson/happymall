@@ -1,7 +1,5 @@
 package fanxing;
 
-import com.google.common.collect.Collections2;
-import com.mmall.common.ServerResponse;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -18,8 +16,8 @@ public class TestServletResponse {
         System.out.println(notEmpty1);
         boolean notEmpty = StringUtils.isNotEmpty("");
         System.out.println(notEmpty);
-        ServerResponse<String> bySuccess = ServerResponse.createBySuccess();
-        ServerResponse<String > bySuccessMessage = ServerResponse.createBySuccessMessage("true........");
+        com.mmall.common.ServerResponse<String> bySuccess = com.mmall.common.ServerResponse.createBySuccess();
+        com.mmall.common.ServerResponse<String > bySuccessMessage = com.mmall.common.ServerResponse.createBySuccessMessage("true........");
         System.out.println(bySuccessMessage.getMsg()+bySuccessMessage.getStatus());
         int status = bySuccess.getStatus();
         System.out.println(status);

@@ -2,113 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4dbb5ae3-38b3-468b-a378-86f39631237f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/ActBindGroupMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/AddInvitationUserRelMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/ArrangementtranscontentMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/ArrangementtranslogMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/BatchAddAccountsMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/CardActiveCtrlMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/CardFilterRuleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/CheckAccountIsAddMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/CloseAccFinancialRightMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/CloseFreePayMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/DfLogonPayFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/ErrorCodeMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/GetAccountsListMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/GetCardTypeByNoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/ImBranchMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/MbssLogonInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/MqErrorRecordMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/PubParamMapMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/PublicLogFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/PublicSysParamMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/QryAccListWithCardNoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/QryCanUsCardMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/QryDefaultRecCardMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/QryRecommendInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/QrySwitchForScavenPayMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/QrySwitchSttAndLimitFreePayMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/RegisterPublicMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/SetDefaultCardMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/SetDefaultPayCardMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/SetDefaultRecCardMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/SetSwitchForScanvenPayMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/TradeMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UpdateResetMHLogonPwdMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsAccLimitMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsAccinfMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsAccountUserRelMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsAddcardChannelMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsBusinessRuleMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsCardTypeMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsChannelLogonTypeCtrlMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsChannelOperFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsCstMsgRightMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsCustBaseInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsCustCertInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsCustMissortInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsDelOtherAccountMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsDeviceInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsDfLogonPayFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsEquiCheckMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsFreepwdOpenMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsLogonCtrlMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsLogonDeviceFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsLogonPwdFailMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsLogonPwdHisMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsLogonTypeCtrlMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsLogonTypeCtrlSynMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsMbdfLogonInfMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsMiCardMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsNocardSignFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsOpenCloseFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsOutCardBindMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsPayPasswordMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsPrivateQuestionInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsPwdCheckRecordMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsSafeToolMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsSignChannelMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsSmsCodeCrtlMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsSysListMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsUserChannelOpenMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsUserInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/UsUserSubChannelOpenMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/selectListMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/com.cgb.ibma.user.xml/selectUserNoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/alipy/demo/trade/Pig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/AddInvitationUserRelMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/CardActiveCtrlMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/CardFilterRuleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/CheckAccountIsAddMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/CloseAccFinancialRightMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/CloseFreePayMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/GetAccountsListMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/GetCardTypeByNoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/QryAccListWithCardNoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/QryDefaultRecCardMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/QryRecommendInfoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/QrySwitchForScavenPayMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/QrySwitchSttAndLimitFreePayMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/SetDefaultCardMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/SetDefaultPayCardMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/SetDefaultRecCardMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/SetSwitchForScanvenMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/TradeMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/UpdateResetMHLogonPwdMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/com/cgb/ibma/center/user/dao/UsUserChannelOpenMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/top/sun520/dao/CategoryMapperTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/company.iml" beforeDir="false" afterPath="$PROJECT_DIR$/company.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/mmall/JingNing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/mmall/JingNing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/mmall/dao/CategoryMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/mmall/dao/CategoryMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/mmall/service/impl/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/mmall/service/impl/CategoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/com/mmall/service/impl/ShippingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/com/mmall/service/impl/ShippingServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestList/TestList02.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/TestList/TestListDemo1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/mmall/service/IOrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/mmall/service/IOrderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fanxing/ServerResponseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/fanxing/ServerResponseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fanxing/TestResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fanxing/TestServletResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/fanxing/TestServletResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fileupload/TestFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/top/sun520/dao/BaseClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/top/sun520/dao/BaseClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/top/sun520/dao/CategoryMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/top/sun520/dao/UserMapperTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/top/sun521/test/Testgoava.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/trade/TestDoubleChangeLong.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -119,25 +31,55 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/com/mmall/JingNing.java">
+        <entry file="file://$PROJECT_DIR$/src/main/com/mmall/controller/backend/CountController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state relative-caret-position="264">
+              <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/com/alipy/demo/trade/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1320">
+              <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/com/alipy/demo/trade/Pig.java">
+        <entry file="file://$PROJECT_DIR$/test/com/mmall/dao/UserMapperTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="-944">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="99">
+              <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/top/sun520/dao/BaseClass.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="14" selection-start-column="14" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -160,6 +102,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/com/mmall/JingNing.java" />
         <option value="$PROJECT_DIR$/src/main/com/alipy/demo/trade/Pig.java" />
+        <option value="$PROJECT_DIR$/src/main/com/mmall/controller/backend/CountController.java" />
+        <option value="$PROJECT_DIR$/test/com/mmall/dao/BaseClass.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -188,48 +133,47 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="happymall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="happymall" type="462c0819:PsiDirectoryNode" />
+              <item name="workspace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workspace" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="happymall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="happymall" type="462c0819:PsiDirectoryNode" />
+              <item name="workspace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workspace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="happymall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="happymall" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="happymall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="happymall" type="462c0819:PsiDirectoryNode" />
+              <item name="workspace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workspace" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="happymall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="happymall" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="trade" type="462c0819:PsiDirectoryNode" />
+              <item name="workspace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workspace" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="happymall" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="workspace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workspace" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="mmall" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="workspace" type="b2602c69:ProjectViewProjectNode" />
+              <item name="workspace" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="mmall" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Course" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -237,13 +181,19 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\ADEA\workspace\src\main\webapp\WEB-INF\lib" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -257,9 +207,43 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.UserMapperTest.selectByPrimaryKey">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserMapperTest.count" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="workspace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="top.sun520.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="top.sun520.dao" />
+      <option name="MAIN_CLASS_NAME" value="top.sun520.dao.UserMapperTest" />
+      <option name="METHOD_NAME" value="count" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserMapperTest.selectByPrimaryKey" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="workspace" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="top.sun520.dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mmall.dao" />
+      <option name="MAIN_CLASS_NAME" value="top.sun520.dao.UserMapperTest" />
+      <option name="METHOD_NAME" value="selectByPrimaryKey" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -280,6 +264,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserMapperTest.selectByPrimaryKey" />
+        <item itemvalue="JUnit.UserMapperTest.count" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\57034\AppData\Roaming\Subversion</configuration>
@@ -292,62 +282,77 @@
       <option name="presentableId" value="Default" />
       <updated>1560000731362</updated>
       <workItem from="1560000735694" duration="1825000" />
+      <workItem from="1561110319024" duration="1299000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="UserMapperTest_count - 2019.06.21 at 17h 58m 18s.xml">
+      <configuration name="UserMapperTest.count" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserMapperTest_count - 2019.06.21 at 18h 01m 55s.xml">
+      <configuration name="UserMapperTest.count" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UserMapperTest_count - 2019.06.21 at 18h 05m 25s.xml">
+      <configuration name="UserMapperTest.count" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1825000" />
+    <option name="totallyTimeSpent" value="3124000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="UI Designer" />
-      <window_info id="JRebel" side_tool="true" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Learn" />
-      <window_info id="Web" side_tool="true" />
-      <window_info id="Alibaba Cloud Explorer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="FindBugs-IDEA" />
-      <window_info anchor="bottom" id="Tail" />
-      <window_info anchor="bottom" id="Run with VisualVM" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Educational.CheckDetails" />
-      <window_info anchor="bottom" id="CheckStyle" />
-      <window_info anchor="bottom" id="Event Log" sideWeight="0.5007576" side_tool="true" weight="0.05464481" />
-      <window_info anchor="bottom" id="Statistic" />
-      <window_info anchor="bottom" id="Java Enterprise" />
-      <window_info anchor="bottom" id="Profiler" />
-      <window_info anchor="bottom" id="Database Changes" />
-      <window_info anchor="bottom" id="Version Control" sideWeight="0.49924242" weight="0.09471767" />
-      <window_info anchor="bottom" id="Alibaba Cloud View" />
-      <window_info anchor="bottom" id="JRebel Executor" />
-      <window_info anchor="bottom" id="JRebel Console" side_tool="true" />
-      <window_info anchor="bottom" id="Debug with VisualVM" />
-      <window_info anchor="bottom" id="MyBatis Sql Log" />
+      <window_info id="Learn" order="2" />
+      <window_info id="JRebel" order="3" side_tool="true" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Designer" order="6" />
+      <window_info id="Alibaba Cloud Explorer" order="7" />
+      <window_info id="Web" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" weight="0.091778204" />
+      <window_info anchor="bottom" id="Spring" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.057361376" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Maven" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="RestServices" />
-      <window_info anchor="right" id="Redis Servers" />
-      <window_info anchor="right" id="Graphical Navigator" type="SLIDING" />
-      <window_info anchor="right" id="UML Diagrams" type="SLIDING" />
-      <window_info anchor="right" id="Mybatis datasource" side_tool="true" />
-      <window_info anchor="right" id="Key Promoter X" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="bottom" id="FindBugs-IDEA" order="7" />
+      <window_info anchor="bottom" id="MyBatis Sql Log" order="8" />
+      <window_info anchor="bottom" id="Profiler" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5007576" side_tool="true" weight="0.05464481" />
+      <window_info anchor="bottom" id="Educational.CheckDetails" order="13" />
+      <window_info anchor="bottom" id="CheckStyle" order="14" />
+      <window_info anchor="bottom" id="Statistic" order="15" />
+      <window_info anchor="bottom" id="Run with VisualVM" order="16" />
+      <window_info anchor="bottom" id="Java Enterprise" order="17" />
+      <window_info anchor="bottom" id="Database Changes" order="18" />
+      <window_info anchor="bottom" id="Version Control" order="19" sideWeight="0.49924242" weight="0.09471767" />
+      <window_info anchor="bottom" id="Alibaba Cloud View" order="20" />
+      <window_info anchor="bottom" id="JRebel Executor" order="21" />
+      <window_info anchor="bottom" id="JRebel Console" order="22" side_tool="true" />
+      <window_info anchor="bottom" id="Debug with VisualVM" order="23" />
+      <window_info anchor="bottom" id="Tail" order="24" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="3" />
+      <window_info anchor="right" id="RestServices" order="4" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Mybatis datasource" order="6" side_tool="true" />
+      <window_info anchor="right" id="Graphical Navigator" order="7" type="SLIDING" />
+      <window_info anchor="right" id="Key Promoter X" order="8" />
+      <window_info anchor="right" id="UML Diagrams" order="9" type="SLIDING" />
+      <window_info anchor="right" id="Database" order="10" />
+      <window_info anchor="right" id="Palette&#9;" order="11" />
+      <window_info anchor="right" id="Redis Servers" order="12" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,6 +383,20 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>
@@ -385,23 +404,94 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/com/mmall/JingNing.java">
+    <entry file="file://$PROJECT_DIR$/src/main/com/mmall/JingNing.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/com/alipy/demo/trade/Pig.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/com/mmall/controller/backend/CategoryManageController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state relative-caret-position="462">
+          <caret line="28" column="13" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/com/alipy/demo/trade/Pig.java">
+    <entry file="file://$PROJECT_DIR$/resources/datasource.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/mmall/controller/backend/CountController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="264">
+          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/top/sun520/dao/UserMapperTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-363">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/com/alipy/demo/trade/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1320">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/top/sun520/dao/BaseClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/mmall/dao/UserMapperTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-944">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
           <last-edited>Python 3.6 interpreter library</last-edited>
@@ -416,11 +506,24 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>1.8 (1)</last-edited>
+          <last-edited>1.8</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>workspace</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

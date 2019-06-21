@@ -26,6 +26,8 @@ public class IOrderServiceTest extends BaseClass {
 
     @Test
     public void queryOrderPayStatus() {
+
+        System.out.println();
     }
 
     @Test

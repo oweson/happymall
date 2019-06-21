@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 //<editor-fold desc="Description">
 //region Description
+
 /**
  * the class is create by @Author:oweson
  *
@@ -17,7 +18,9 @@ import java.util.ArrayList;
 public class ServerResponseTest<T> {
     int status;
     String msg;
-    /**data可以是任意的数据*/
+    /**
+     * data可以是任意的数据
+     */
     T data;
 
     public ServerResponseTest() {
@@ -36,7 +39,7 @@ public class ServerResponseTest<T> {
     }
 
     public ServerResponseTest(int status, String msg, T data) {
-        //3状态，提示信息，数据
+        //3 状态，提示信息，数据
         this.status = status;
         this.msg = msg;
         this.data = data;
@@ -47,16 +50,19 @@ public class ServerResponseTest<T> {
         this.status = status;
         this.msg = msg;
     }
-    public static <T> ServerResponseTest createSuccess(){
+
+    public static <T> ServerResponseTest createSuccess() {
         //1成功返回成功状态码
         return new ServerResponseTest(ResponseCode.SUCCESS.getCode());
     }
-    public static <T> ServerResponseTest createBySuccessMessage(String msg){
+
+    public static <T> ServerResponseTest createBySuccessMessage(String msg) {
         //2创建成功返回成功状态码和提示信息
-        return new ServerResponseTest(ResponseCode.SUCCESS.getCode(),msg);
+        return new ServerResponseTest(ResponseCode.SUCCESS.getCode(), msg);
     }
-    public static <T> ServerResponseTest createBySuccess(T data){
-        return  new ServerResponseTest(ResponseCode.SUCCESS.getCode(),data);
+
+    public static <T> ServerResponseTest createBySuccess(T data) {
+        return new ServerResponseTest(ResponseCode.SUCCESS.getCode(), data);
 
     }
 
@@ -74,5 +80,4 @@ public class ServerResponseTest<T> {
     }
 
 }
-//endregion
-//</editor-fold>
+

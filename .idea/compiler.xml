@@ -7,9 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="workspace" />
         <module name="happymall" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="workspace" options="-extdirs E:\ADEA\workspace/src/main/webapp/WEB-INF/lib" />
+    </option>
   </component>
 </project>

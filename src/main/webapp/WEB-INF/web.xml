@@ -5,7 +5,7 @@
          id="WebApp_ID" version="2.5">
 
     <display-name>Archetype Created Web Application</display-name>
-  <!--统一编码为utf-8-->
+
     <filter>
         <filter-name>characterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -37,7 +37,7 @@
             classpath:applicationContext.xml
         </param-value>
     </context-param>
-    <!--容器启动就会初始化这个servlet;否则只有在某个servlet使用的时候才会被加载-->
+
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -45,14 +45,10 @@
     </servlet>
 
 
-    <!-- 这个只会拦截*.do的请求；<servlet-mapping>
-         <servlet-name>dispatcher</servlet-name>
-         <url-pattern>*.do</url-pattern>
-     </servlet-mapping>-->
-    <!--实现restful-->
+
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
 </web-app>

@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import teststh.BaseClass;
 
-import static org.junit.Assert.*;
 
 /**
  * the class is create by @Author:oweson

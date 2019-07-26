@@ -168,8 +168,15 @@
 
     <select id="selectLogin" resultMap="BaseResultMap" parameterType="string">
         <!--java.util.Map会自动转换成我们需要的类型；参数可以是map-->
-        SELECT count(1)
-        -- *???//这样真的好么?答案就是,这样不好.
+       <!-- SELECT count(1) as count
+        <include refid="Base_Column_List"/>
+        from mmall_user
+        where username = #{username}
+        and password = #{password}大坑！！！## 超级Bug
+
+6 **用户登录，sql问题，count(1)返回了1，覆盖了后面的实体id信息，
+1替换了id,1是admin的！导致登陆没有想象，查看个人信息为空！！！**-->
+        SELECT
         <include refid="Base_Column_List"/>
         from mmall_user
         where username = #{username}

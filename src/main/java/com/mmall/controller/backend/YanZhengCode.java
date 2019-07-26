@@ -102,7 +102,6 @@ public class YanZhengCode {
             ImageIO.write(buffImg, "jpeg", sos);
             sos.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

@@ -127,6 +127,7 @@ public class CategoryManageController {
      * 5 删除分类
      */
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    @ResponseBody
     public ServerResponse delete(@RequestParam("cid") Integer cid, HttpSession session) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {

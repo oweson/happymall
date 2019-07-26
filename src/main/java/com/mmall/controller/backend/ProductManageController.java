@@ -23,7 +23,7 @@ import java.util.Map;
 
 
 @Controller
-/**1 产品的管理*/
+/** 1 产品的管理*/
 @RequestMapping("/manage/product/")
 public class ProductManageController {
 
@@ -36,16 +36,16 @@ public class ProductManageController {
 
     @RequestMapping("save.do")
     @ResponseBody
-    /**1 保存商品信息，*/
+    /** 1 保存商品信息，*/
     public ServerResponse productSave(HttpSession session, Product product) {
-        /**后端操作，需要用户登录并且是管理员才可以操作；*/
+        /*后端操作，需要用户登录并且是管理员才可以操作；*/
         User user = (User) session.getAttribute(Const.CURRENT_USER);
-        /**存在用户登录*/
+        /*存在用户登录*/
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录管理员");
 
         }
-        /**确认是管理员*/
+        /*确认是管理员*/
         if (iUserService.checkAdminRole(user).isSuccess()) {
             /**填充我们增加产品的业务逻辑*/
             return iProductService.saveOrUpdateProduct(product);
@@ -74,20 +74,19 @@ public class ProductManageController {
     }
 
     /**
-     * 3 获得产品的详情，传入sessin和商品的id
+     * 3 获得产品的详情，传入session和商品的id,restful
      */
-    @RequestMapping(value = "detail.do", method = RequestMethod.GET)
+    @RequestMapping(value = "/detail.do", method = RequestMethod.GET)
     @ResponseBody
-    public ServerResponse getDetail(HttpSession session, @PathVariable Integer productId) {
+    public ServerResponse getDetail(HttpSession session, @RequestParam("cid") Integer productId) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {
-            /**用户的null判断*/
+            /*用户的null判断*/
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录管理员");
 
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**确认是管理员*/
-            /**填充业务*/
+            /*确认是管理员填充业务*/
             return iProductService.manageProductDetail(productId);
 
         } else {
@@ -107,7 +106,7 @@ public class ProductManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录管理员");
 
         }
-           if (iUserService.checkAdminRole(user).isSuccess()) {
+        if (iUserService.checkAdminRole(user).isSuccess()) {
             /**填充业务*/
             return iProductService.getProductList(pageNum, pageSize);
         } else {
@@ -127,7 +126,7 @@ public class ProductManageController {
 
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**填充业务*/
+            /*填充业务*/
             return iProductService.searchProduct(productName, productId, pageNum, pageSize);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作");
@@ -139,22 +138,23 @@ public class ProductManageController {
      */
     @RequestMapping("upload.do")
     @ResponseBody
-    /**进行权限的校验，不是管理员不允许上传；*/
+    /**
+     * 进行权限的校验，不是管理员不允许上传；*/
     public ServerResponse upload(HttpSession session, @RequestParam(value = "upload_file", required = false) MultipartFile file, HttpServletRequest request) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录管理员");
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**得到图片的文件夹目录*/
+            /*得到图片的文件夹目录*/
             String path = request.getSession().getServletContext().getRealPath("upload");
-            /**返回上传的文件名*/
+            /*返回上传的文件名*/
             String targetFileName = iFileService.upload(file, path);
-            /**图片在服务器的地址*/
+            /*图片在服务器的地址*/
             String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
 
             Map<String, Object> fileMap = Maps.newHashMap();
-            /**上传图片成功后，返回图片的名字和图片的url给前端*/
+            /*上传图片成功后，返回图片的名字和图片的url给前端*/
             fileMap.put("uri", targetFileName);
             fileMap.put("url", url);
             return ServerResponse.createBySuccess(fileMap);

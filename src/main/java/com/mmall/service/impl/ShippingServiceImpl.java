@@ -60,12 +60,12 @@ public class ShippingServiceImpl implements IShippingService {
      */
     @Override
     public ServerResponse update(Integer userId, Shipping shipping) {
-        /**根据用户的id,和对象进行更新，用户的id从session中拿到
+        /*根据用户的id,和对象进行更新，用户的id从session中拿到
          * 防止传入假的userid,更新别人的地址，必须充登录用户的session中拿到userid*/
         shipping.setUserId(userId);
         int rowCount = shippingMapper.updateByShipping(shipping);
         if (rowCount > 0) {
-            /**数据库的底层总有这那样的原因存在，所以要进行受影响行数的判断*/
+            /*数据库的底层总有这那样的原因存在，所以要进行受影响行数的判断*/
             return ServerResponse.createBySuccess("更新地址成功");
         }
         return ServerResponse.createByErrorMessage("更新地址失败");

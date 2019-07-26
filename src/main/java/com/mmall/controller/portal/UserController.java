@@ -32,18 +32,18 @@ public class UserController {
      * @param session
      * @return
      */
-    @RequestMapping(value = "login.do", method = RequestMethod.POST)
-    /**1  将返回值序列化为json，并且限定提交方式为post*/
+    @RequestMapping(value = "login.do", method = {RequestMethod.POST, RequestMethod.GET})
+    /** 1  将返回值序列化为json，并且限定提交方式为post*/
     @ResponseBody
     public ServerResponse<User> login(String username, String password, HttpSession session) {
         ServerResponse<User> response = iUserService.login(username, password);
         if (response.isSuccess()) {
-            /**仅仅登录，得到对象的状态码等于成功的状态码说明登录成功，
-             吧得到的user数据放到session中
-            session中的key就是常量，value就是user数据信息；*/
+            /*仅仅登录，得到对象的状态码等于成功的状态码说明登录成功，
+             把得到的user数据放到session中
+             session中的key就是常量，value就是user数据信息；*/
             session.setAttribute(Const.CURRENT_USER, response.getData());
         }
-        /**把json数据返回给前端；*/
+        /*把json数据返回给前端；*/
         return response;
     }
 
@@ -54,20 +54,19 @@ public class UserController {
     @ResponseBody
     public ServerResponse<String> logout(HttpSession session) {
         session.removeAttribute(Const.CURRENT_USER);
-        /**
-         *   session.invalidate();
-         *   所有的session失效
-         * */
-        /**返回成功状态码0；*/
+        /*session.invalidate();
+         所有的session失效
+         返回成功状态码0；*/
         return ServerResponse.createBySuccess();
     }
 
     /**
-     * 3用户注册接口
+     * 3 用户注册接口
      */
     @RequestMapping(value = "register.do", method = RequestMethod.POST)
     @ResponseBody
-    /**用对象吧数据进行封装,真正的处理逻辑在service层*/
+    /**
+     * 用对象吧数据进行封装,真正的处理逻辑在service层*/
     public ServerResponse<String> register(User user) {
         return iUserService.register(user);
     }
@@ -78,7 +77,7 @@ public class UserController {
      */
     @RequestMapping(value = "check_valid.do", method = RequestMethod.POST)
     @ResponseBody
-    //传入service进行教研，无论成功与否返回提示信息给前端；
+    /**传入service进行校验，无论成功与否返回提示信息给前端；*/
     public ServerResponse<String> checkValid(String str, String type) {
         return iUserService.checkValid(str, type);
     }
@@ -90,11 +89,13 @@ public class UserController {
     @ResponseBody
     public ServerResponse<User> getUserInfo(HttpSession session) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
+        System.out.println(user.toString());
+        //todo id???  1?
         if (user != null) {
-            /**session中的数据不为null,就取出来传进去返回user信息给前端；*/
+            /*session中的数据不为null,就取出来传进去返回user信息给前端；*/
             return ServerResponse.createBySuccess(user);
         }
-        /**没有得到信息就是为null，用户没有登录*/
+        /*没有得到信息就是为null，用户没有登录*/
         return ServerResponse.createByErrorMessage("用户未登录,无法获取当前用户的信息");
     }
 
@@ -176,7 +177,7 @@ public class UserController {
 
     /**
      * 10 ，修改个人信息的时候首先get得到信息，进行个人信息的回显然后在进行更新；
-     * 9获得用户个人信息，首先调用updTE 9F方法；
+     * 获得用户个人信息，首先调用updTE 9F方法；
      */
 
     @RequestMapping(value = "get_information.do", method = RequestMethod.POST)
@@ -188,6 +189,7 @@ public class UserController {
             //返回失败状态码10给前端；
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "未登录,需要强制登录status=10");
         }
+        System.out.println(currentUser.getId() + "==============================================================");
         return iUserService.getInformation(currentUser.getId());
     }
 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-
 @Controller
 @RequestMapping("/product/")
 public class ProductController {
@@ -19,14 +18,17 @@ public class ProductController {
     private IProductService iProductService;
 
 
-    @RequestMapping(value = "/{productId}", method = RequestMethod.GET)
+    /*
+        @RequestMapping(value = "/{productId}", method = RequestMethod.GET)
+    */
+    @RequestMapping("detail.do")
     @ResponseBody
-    public ServerResponse<ProductDetailVo> detail(@PathVariable Integer productId) {
+    public ServerResponse<ProductDetailVo> detail(@RequestParam("productId") Integer productId) {
         return iProductService.getProductDetail(productId);
     }
 
     /**
-     *  2 实现restful
+     * 2 实现restful
      * keyword/{keyword}进行制定！！！------keyword定位了list方法！！！
      * http://localhost:9090//product/keyword/%E6%89%8B%E6%9C%BA/100012/1/2/price_dsc
      */
@@ -39,7 +41,7 @@ public class ProductController {
                                          @PathVariable(value = "pageSize") Integer pageSize,
 
                                          @PathVariable(value = "orderBy") String orderBy) {
-        /**为商品的分页参数设置默认值*/
+        /*为商品的分页参数设置默认值*/
         if (pageNum == null) {
             pageNum = 1;
 

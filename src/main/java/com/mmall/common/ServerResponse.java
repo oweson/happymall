@@ -13,6 +13,9 @@ import java.io.Serializable;
  * <p>
  * 1T代表这是一个泛型方法
  * 2T这是一个返回类型；
+ * <p>
+ * 1T代表这是一个泛型方法
+ * 2T这是一个返回类型；
  */
 
 /**
@@ -55,9 +58,10 @@ public class ServerResponse<T> implements Serializable {
     }
 
     @JsonIgnore
-    /**使之不在json序列化结果当中*/
+    /**
+     * 使之不在json序列化结果当中*/
     public boolean isSuccess() {
-        /**当前对象的状态码等于0说明响应是成功的;
+        /*当前对象的状态码等于0说明响应是成功的;
          * 返回true;*/
         return this.status == ResponseCode.SUCCESS.getCode();
     }

@@ -34,11 +34,11 @@ public class UserManageController {
         /**1 登陆后得到响应的对象信息；*/
         ServerResponse<User> response = iUserService.login(username, password);
         if (response.isSuccess()) {
-            /** 2 登录成功，得到返回的数据*/
+            /* 2 登录成功，得到返回的数据*/
             User user = response.getData();
-            /** 3 获得用户的角色，并且判断角色是不是管理的角色；*/
+            /* 3 获得用户的角色，并且判断角色是不是管理的角色；*/
             if (user.getRole() == Const.Role.ROLE_ADMIN) {
-                /** 4 说明登录的是管理员，把用户信息放入session*/
+                /*4 说明登录的是管理员，把用户信息放入session*/
                 session.setAttribute(Const.CURRENT_USER, user);
                 return response;
             } else {

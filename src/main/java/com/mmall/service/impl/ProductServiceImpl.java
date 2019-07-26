@@ -207,15 +207,14 @@ public class ProductServiceImpl implements IProductService {
      */
     @Override
     public ServerResponse<PageInfo> searchProduct(String productName, Integer productId, int pageNum, int pageSize) {
-        /**根据id或者名字搜索，一方为null不参与条件的拼接*/
-        /**进行分页，*/
+        /*根据id或者名字搜索，一方为null不参与条件的拼接进行分页，*/
         PageHelper.startPage(pageNum, pageSize);
         if (StringUtils.isNotBlank(productName)) {
             //todo 缺陷？？？开头和结尾的出不来
-            /**查询包含商品名字的所有商品*/
+            /*查询包含商品名字的所有商品*/
             productName = new StringBuilder().append("%").append(productName).append("%").toString();
         }
-        /**根据名字可能返回多个商品的信息*/
+        /*根据名字可能返回多个商品的信息*/
         List<Product> productList = productMapper.selectByNameAndProductId(productName, productId);
         List<ProductListVo> productListVoList = Lists.newArrayList();
         for (Product productItem : productList) {
@@ -224,7 +223,7 @@ public class ProductServiceImpl implements IProductService {
         }
         PageInfo pageResult = new PageInfo(productList);
 
-        /**代码复用上一次的代码；把得到的商品信息进行封装
+        /*代码复用上一次的代码；把得到的商品信息进行封装
          根据集合进行分页的处理
          不是吧查询到的所有数据给前端，但是还需要分页
          **/

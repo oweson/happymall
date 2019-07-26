@@ -263,17 +263,17 @@ public class OrderServiceImpl implements IOrderService {
             return ServerResponse.createByErrorMessage("购物车为空");
         }
 
-        /**校验购物车的数据,包括产品的状态和数量*/
+        /*校验购物车的数据,包括产品的状态和数量*/
         for (Cart cartItem : cartList) {
-            /**一个cartItem一个商品*/
+            /*一个cartItem一个商品*/
             OrderItem orderItem = new OrderItem();
             Product product = productMapper.selectByPrimaryKey(cartItem.getProductId());
-            /**查看是否在售状态*/
+            /*查看是否在售状态*/
             if (Const.ProductStatusEnum.ON_SALE.getCode() != product.getStatus()) {
                 return ServerResponse.createByErrorMessage("产品" + product.getName() + "不是在线售卖状态");
             }
 
-            /**校验库存;*/
+            /*校验库存;*/
             if (cartItem.getQuantity() > product.getStock()) {
                 return ServerResponse.createByErrorMessage("产品" + product.getName() + "库存不足");
             }
@@ -284,10 +284,10 @@ public class OrderServiceImpl implements IOrderService {
             orderItem.setProductName(product.getName());
             orderItem.setProductImage(product.getMainImage());
             orderItem.setCurrentUnitPrice(product.getPrice());
-            /**在订单详情里面每个商品的数量*/
+            /*在订单详情里面每个商品的数量*/
             orderItem.setQuantity(cartItem.getQuantity());
             orderItem.setTotalPrice(BigDecimalUtil.mul(product.getPrice().doubleValue(), cartItem.getQuantity()));
-            /**填充订单项的集合*/
+            /*填充订单项的集合*/
             //todo 不是计算总价？？？
             orderItemList.add(orderItem);
         }
@@ -303,19 +303,19 @@ public class OrderServiceImpl implements IOrderService {
         if (order == null) {
             return ServerResponse.createByErrorMessage("该用户此订单不存在");
         }
-        /**已经付款的订单是不可以取消的，只能申请退款.....*/
+        /*已经付款的订单是不可以取消的，只能申请退款.....*/
         if (order.getStatus() != Const.OrderStatusEnum.NO_PAY.getCode()) {
             return ServerResponse.createByErrorMessage("已付款,无法取消订单");
         }
-        /**创建新的订单对象*/
+        /*创建新的订单对象*/
         Order updateOrder = new Order();
         updateOrder.setId(order.getId());
-        /**设置订单的状态为取消，有选择的更新*/
+        /*设置订单的状态为取消，有选择的更新*/
         updateOrder.setStatus(Const.OrderStatusEnum.CANCELED.getCode());
 
         int row = orderMapper.updateByPrimaryKeySelective(updateOrder);
         if (row > 0) {
-            /**取消成功*/
+            /*取消成功*/
             return ServerResponse.createBySuccess();
         }
         return ServerResponse.createByError();
@@ -326,7 +326,7 @@ public class OrderServiceImpl implements IOrderService {
      */
     public ServerResponse getOrderCartProduct(Integer userId) {
         OrderProductVo orderProductVo = new OrderProductVo();
-        /**从购物车中获取数据*/
+        /*从购物车中获取数据*/
 
         List<Cart> cartList = cartMapper.selectCheckedCartByUserId(userId);
         ServerResponse serverResponse = this.getCartOrderItem(userId, cartList);
@@ -354,9 +354,9 @@ public class OrderServiceImpl implements IOrderService {
     public ServerResponse<OrderVo> getOrderDetail(Integer userId, Long orderNo) {
         Order order = orderMapper.selectByUserIdAndOrderNo(userId, orderNo);
         if (order != null) {
-            /**订单不为空获取订单项的集合*/
+            /*订单不为空获取订单项的集合*/
             List<OrderItem> orderItemList = orderItemMapper.getByOrderNoUserId(orderNo, userId);
-            /**把订单项的集合组装订单vo*/
+            /*把订单项的集合组装订单vo*/
             OrderVo orderVo = assembleOrderVo(order, orderItemList);
             return ServerResponse.createBySuccess(orderVo);
         }

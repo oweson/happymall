@@ -25,17 +25,21 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-        delete from mmall_user
+        delete
+        from mmall_user
         where id = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.mmall.pojo.User">
-        insert into mmall_user (id, username, password,
-                                email, phone, question,
-                                answer, role, create_time,
-                                update_time)
-        values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-                #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR},
-                #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
+        insert into mmall_user (id, username, password, email, phone, question, answer, role, create_time, update_time)
+        values (#{id,jdbcType=INTEGER},
+                #{username,jdbcType=VARCHAR},
+                #{password,jdbcType=VARCHAR},
+                #{email,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR},
+                #{question,jdbcType=VARCHAR},
+                #{answer,jdbcType=VARCHAR},
+                #{role,jdbcType=INTEGER},
+                now(),
                 now())
     </insert>
     <insert id="insertSelective" parameterType="com.mmall.pojo.User">
@@ -168,14 +172,14 @@
 
     <select id="selectLogin" resultMap="BaseResultMap" parameterType="string">
         <!--java.util.Map会自动转换成我们需要的类型；参数可以是map-->
-       <!-- SELECT count(1) as count
-        <include refid="Base_Column_List"/>
-        from mmall_user
-        where username = #{username}
-        and password = #{password}大坑！！！## 超级Bug
+        <!-- SELECT count(1) as count
+         <include refid="Base_Column_List"/>
+         from mmall_user
+         where username = #{username}
+         and password = #{password}大坑！！！## 超级Bug
 
-6 **用户登录，sql问题，count(1)返回了1，覆盖了后面的实体id信息，
-1替换了id,1是admin的！导致登陆没有想象，查看个人信息为空！！！**-->
+ 6 **用户登录，sql问题，count(1)返回了1，覆盖了后面的实体id信息，
+ 1替换了id,1是admin的！导致登陆没有想象，查看个人信息为空！！！**-->
         SELECT
         <include refid="Base_Column_List"/>
         from mmall_user
@@ -194,8 +198,8 @@
         SELECT count(1)
         from mmall_user
         where username = #{username}
-              and question = #{question}
-              and answer = #{answer}
+          and question = #{question}
+          and answer = #{answer}
     </select>
 
     <update id="updatePasswordByUsername" parameterType="map">
@@ -209,7 +213,7 @@
         SELECT count(1)
         from mmall_user
         where password = #{password}
-              and id = #{userId}
+          and id = #{userId}
     </select>
 
 

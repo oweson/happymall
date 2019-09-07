@@ -49,13 +49,13 @@ public class CategoryServiceImpl implements ICategoryService {
         if (parentId == null || StringUtils.isBlank(categoryName)) {
             return ServerResponse.createByErrorMessage("添加品类参数错误");
         }
-        /**设置新的插入对象，接受数据进行更新*/
+        /*设置新的插入对象，接受数据进行更新*/
         Category category = new Category();
         category.setName(categoryName);
         category.setParentId(parentId);
-        /**这个分类默认是可用的*/
+        /*这个分类默认是可用的*/
         category.setStatus(true);
-        /**插入数据并且返回受影响的行数；*/
+        /*插入数据并且返回受影响的行数；*/
         int rowCount = categoryMapper.insert(category);
         if (rowCount > 0) {
             return ServerResponse.createBySuccess("添加品类成功");
@@ -72,14 +72,14 @@ public class CategoryServiceImpl implements ICategoryService {
             return ServerResponse.createByErrorMessage("更新品类参数错误");
         }
         Category category = new Category();
-        /**只是更新着两个字段*/
+        /*只是更新着两个字段*/
         category.setId(categoryId);
         category.setName(categoryName);
 
         int rowCount = categoryMapper.updateByPrimaryKeySelective(category);
-        /**判断返回受影响的行数；是否成功；*/
+        /*判断返回受影响的行数；是否成功；*/
         if (rowCount > 0) {
-            /**不要忘记了return*/
+            /*不要忘记了return*/
             return ServerResponse.createBySuccess("更新品类名字成功");
         }
         return ServerResponse.createByErrorMessage("更新品类名字失败");
@@ -93,9 +93,12 @@ public class CategoryServiceImpl implements ICategoryService {
      */
     @Override
     public ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId) {
-        /**对传入的id进行查询，并且进行Null判断；*/
+        if (categoryId == null) {
+            return ServerResponse.createByErrorMessage("更新品类参数错误");
+        }
+        /*对传入的id进行查询，并且进行Null判断；*/
         List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
-        /**不仅仅判断了是不是空，还判断了是不是一个空的集合，  0个元素*/
+        /*不仅仅判断了是不是空，还判断了是不是一个空的集合，  0个元素*/
         if (CollectionUtils.isEmpty(categoryList)) {
             logger.info("未找到当前分类的子分类");
             logger.info("找也找不到了......");
@@ -113,12 +116,10 @@ public class CategoryServiceImpl implements ICategoryService {
     @Override
     public ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId) {
         Set<Category> categorySet = Sets.newHashSet();
-        /**调用下面的递归算法；*/
+        /*调用下面的递归算法；*/
         findChildCategory(categorySet, categoryId);
-
-
         List<Integer> categoryIdList = Lists.newArrayList();
-        /**递归算法中是直接查询的没有进行null判断*/
+        /*递归算法中是直接查询的没有进行null判断*/
         if (categoryId != null) {
             /**如果不为null，进行遍历，添加到集合；*/
             for (Category categoryItem : categorySet) {
@@ -141,13 +142,13 @@ public class CategoryServiceImpl implements ICategoryService {
         if (category != null) {
             categorySet.add(category);
         }
-        /**查找子节点,平级！！！；
-         * ,递归算法一定要有一个退出的条件*/
-        /**mybatis对集合会处理，即使找不到也不会返回null
+        /*查找子节点,平级！！！；
+         * ,递归算法一定要有一个退出的条件
+        mybatis对集合会处理，即使找不到也不会返回null
          * 不可预知的就需要进行非空的判断，否则会nullpoint异常；,*/
         List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
         for (Category categoryItem : categoryList) {
-            /**for是递归的结束条件*/
+            /*for是递归的结束条件*/
             findChildCategory(categorySet, categoryItem.getId());
         }
         return categorySet;

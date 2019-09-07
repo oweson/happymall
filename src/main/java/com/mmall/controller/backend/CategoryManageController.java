@@ -42,12 +42,13 @@ public class CategoryManageController {
     @ResponseBody
     /**  判断当前用户是否登录，session是有效期限的，不传入parentId就是一级分类*/
     public ServerResponse addCategory(HttpSession session, String categoryName, @RequestParam(value = "parentId", defaultValue = "0") int parentId) {
-        /** 从session中得到当前用户*/
+        /* 从session中得到当前用户*/
         User user = (User) session.getAttribute(Const.CURRENT_USER);
         if (user == null) {
-            /**如果用户为Null说明用户为登录，返回需要登录状态码*/
+            /*如果用户为Null说明用户为登录，返回需要登录状态码*/
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录");
         }
+        // todo 拦截器做登陆校验
         /**校验一下是否是管理员,只有管理员才可以操作分类*/
         if (iUserService.checkAdminRole(user).isSuccess()) {
             /**调用了方法得到教研对象，然后又调用了方法判断成功*/
@@ -68,12 +69,12 @@ public class CategoryManageController {
     @ResponseBody
     public ServerResponse setCategoryName(HttpSession session, Integer categoryId, String categoryName) {
         User user = (User) session.getAttribute(Const.CURRENT_USER);
-        /**进行了代码的复用；*/
+        /*进行了代码的复用；*/
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录");
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**更新categoryName*/
+            /*更新categoryName*/
             return iCategoryService.updateCategoryName(categoryId, categoryName);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");
@@ -93,8 +94,8 @@ public class CategoryManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录");
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**进行一系列的判断进行业务逻辑的处理；*/
-            /**查询子节点的category信息,并且不递归,保持平级*/
+            /*进行一系列的判断进行业务逻辑的处理；
+            查询子节点的category信息,并且不递归,保持平级*/
             return iCategoryService.getChildrenParallelCategory(categoryId);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");

@@ -86,7 +86,7 @@ public class UserServiceImpl implements IUserService {
         /*用户存在查询成功，把得到的密码置空防止抓包，其余的信息返回，提示登录状态成功；*/
 
         user.setPassword(org.apache.commons.lang3.StringUtils.EMPTY);
-        System.out.println(user.toString()+"**************************************************************");
+        System.out.println(user.toString() + "**************************************************************");
         return ServerResponse.createBySuccess("登录成功", user);
     }
 
@@ -165,16 +165,16 @@ public class UserServiceImpl implements IUserService {
         /**复用校验username的方法*/
         ServerResponse validResponse = this.checkValid(username, Const.USERNAME);
         if (validResponse.isSuccess()) {
-            /**用户不存在*/
+            /*用户不存在*/
             return ServerResponse.createByErrorMessage("用户不存在");
         }
         /**根据用户名子查找用户的密保问题；*/
         String question = userMapper.selectQuestionByUsername(username);
         if (org.apache.commons.lang3.StringUtils.isNotBlank(question)) {
-            /**如果问题不为null说明成功了，找到了密保问题*/
+            /*如果问题不为null说明成功了，找到了密保问题*/
             return ServerResponse.createBySuccess(question);
         }
-        /**没有找到哪里出了问题！！！可能用户根本就没有设置密保问题*/
+        /*没有找到哪里出了问题！！！可能用户根本就没有设置密保问题*/
         return ServerResponse.createByErrorMessage("找回密码的问题是空的");
     }
 
@@ -182,6 +182,7 @@ public class UserServiceImpl implements IUserService {
      * 5 验证用户的问题答案；
      */
     public ServerResponse<String> checkAnswer(String username, String question, String answer) {
+        // todo 检验用户是否存在
         /*根据用户的名字，密保问题，密保答案进行教研*/
         int resultCount = userMapper.checkAnswer(username, question, answer);
         /*校验成功，说明问题及问题答案是这个用户的,并且是正确的*/
@@ -194,7 +195,7 @@ public class UserServiceImpl implements IUserService {
             /*把token存入进行返回；*/
             return ServerResponse.createBySuccess(forgetToken);
         }
-        /**答案不对；*/
+        /*答案不对；*/
         return ServerResponse.createByErrorMessage("问题的答案错误");
     }
 

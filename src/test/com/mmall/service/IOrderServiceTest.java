@@ -1,9 +1,13 @@
 package com.mmall.service;
 
 import com.mmall.common.ServerResponse;
+import com.mmall.dao.OrderItemMapper;
+import com.mmall.pojo.OrderItem;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import teststh.BaseClass;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -15,6 +19,14 @@ import static org.junit.Assert.*;
 public class IOrderServiceTest extends BaseClass {
     @Autowired
     private IOrderService iOrderService;
+    @Autowired
+    OrderItemMapper orderItemMapper;
+    @Test
+    public void findError(){
+        List<OrderItem> byOrderNo = orderItemMapper.getByOrderNo(1492091083720L);
+        System.out.println(byOrderNo);
+
+    }
 
     @Test
     public void pay() {

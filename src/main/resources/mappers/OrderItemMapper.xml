@@ -17,7 +17,7 @@
     </constructor>
   </resultMap>
   <sql id="Base_Column_List" >
-    id, order_no, product_id, product_name, product_image, current_unit_price, quantity, 
+    id,order_no, product_id, product_name, product_image, current_unit_price, quantity,
     total_price, create_time, update_time, user_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -165,7 +165,7 @@
   </update>
 
 
-  <select id="getByOrderNoUserId" parameterType="map" resultMap="BaseResultMap">
+  <select id="getByOrderNoUserId" parameterType="map" resultType="com.mmall.pojo.OrderItem">
     SELECT
     <include refid="Base_Column_List"/>
     from mmall_order_item
@@ -174,8 +174,8 @@
   </select>
 
   <select id="getByOrderNo" parameterType="map" resultMap="BaseResultMap">
-    SELECT
-    <include refid="Base_Column_List"/>
+    SELECT *
+    <!--<include refid="Base_Column_List"/>-->
     from mmall_order_item
     where order_no = #{orderNo}
   </select>

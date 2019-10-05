@@ -8,9 +8,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class OrderItem {
+    // com.mmall.pojo.OrderItem
+    public OrderItem() {
+
+    }
+
     private Integer id;
     /**
      * 1 一个订单项归属一个订单，一个订单对应多个订单项

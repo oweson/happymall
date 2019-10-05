@@ -36,7 +36,7 @@ public class ProductManageController {
 
     @RequestMapping("save.do")
     @ResponseBody
-    /** 1 保存商品信息，*/
+    /** 1 保存商品信息或者更新，*/
     public ServerResponse productSave(HttpSession session, Product product) {
         /*后端操作，需要用户登录并且是管理员才可以操作；*/
         User user = (User) session.getAttribute(Const.CURRENT_USER);

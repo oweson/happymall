@@ -388,10 +388,10 @@ public class OrderServiceImpl implements IOrderService {
             if (userId == null) {
                 /**用户和普通用户都用这个方法*/
                 //todo 管理员查询的时候 不需要传userId
+                // todo NPE ???
                 orderItemList = orderItemMapper.getByOrderNo(order.getOrderNo());
             } else {
-                /**普通用户查询需要userId；
-                 * 查出订单项的集合*/
+                /*普通用户查询需要userId； 查出订单项的集合*/
                 orderItemList = orderItemMapper.getByOrderNoUserId(order.getOrderNo(), userId);
             }
             /**组装单个订单的vo*/
@@ -595,7 +595,7 @@ public class OrderServiceImpl implements IOrderService {
     public ServerResponse<OrderVo> manageDetail(Long orderNo) {
         Order order = orderMapper.selectByOrderNo(orderNo);
         if (order != null) {
-            /**根据订单号查询订单项的集合*/
+            /*根据订单号查询订单项的集合*/
             List<OrderItem> orderItemList = orderItemMapper.getByOrderNo(orderNo);
             OrderVo orderVo = assembleOrderVo(order, orderItemList);
             return ServerResponse.createBySuccess(orderVo);

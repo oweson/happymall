@@ -18,9 +18,9 @@ public class ProductController {
     private IProductService iProductService;
 
 
-    /*
-        @RequestMapping(value = "/{productId}", method = RequestMethod.GET)
-    */
+    /**
+     * @RequestMapping(value = "/{productId}", method = RequestMethod.GET)
+     */
     @RequestMapping("detail.do")
     @ResponseBody
     public ServerResponse<ProductDetailVo> detail(@RequestParam("productId") Integer productId) {
@@ -50,7 +50,7 @@ public class ProductController {
             pageSize = 10;
         }
         if (StringUtils.isBlank(orderBy)) {
-            /**默认价格低的上浮*/
+            /*默认价格低的上浮*/
             orderBy = "price_asc";
         }
 

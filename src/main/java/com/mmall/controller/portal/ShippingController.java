@@ -74,52 +74,52 @@ public class ShippingController {
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-        /*用户的id是服务端拿到的，指向用户id*的这个收货地址！！！*/
+        /*用户的id是服务端拿到的，指向用户id的这个收货地址！！！*/
         return iShippingService.del(user.getId(), shippingId);
     }
 
     /**
      * 3 更新收货地址
      */
-        @RequestMapping("update.do")
-        @ResponseBody
-        public ServerResponse update (HttpSession session, Shipping shipping){
-            User user = (User) session.getAttribute(Const.CURRENT_USER);
-            if (user == null) {
-                return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
-            }
-            return iShippingService.update(user.getId(), shipping);
+    @RequestMapping("update.do")
+    @ResponseBody
+    public ServerResponse update(HttpSession session, Shipping shipping) {
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
-
-        /**
-         * 4 查看收货地址
-         */
-        @RequestMapping("select.do")
-        @ResponseBody
-        public ServerResponse<Shipping> select (HttpSession session, Integer shippingId){
-            User user = (User) session.getAttribute(Const.CURRENT_USER);
-            if (user == null) {
-                return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
-            }
-            return iShippingService.select(user.getId(), shippingId);
-        }
-
-        /**
-         * 5 查看收货地址的列表
-         */
-        @RequestMapping("list.do")
-        @ResponseBody
-        /**
-         * 设置分页的默认值不传入也不会报错*/
-        public ServerResponse<PageInfo> list ( @RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
-        @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
-        HttpSession session){
-            User user = (User) session.getAttribute(Const.CURRENT_USER);
-            if (user == null) {
-                return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
-            }
-            return iShippingService.list(user.getId(), pageNum, pageSize);
-        }
-
-
+        return iShippingService.update(user.getId(), shipping);
     }
+
+    /**
+     * 4 查看收货地址
+     */
+    @RequestMapping("select.do")
+    @ResponseBody
+    public ServerResponse<Shipping> select(HttpSession session, Integer shippingId) {
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iShippingService.select(user.getId(), shippingId);
+    }
+
+    /**
+     * 5 查看收货地址的列表
+     */
+    @RequestMapping("list.do")
+    @ResponseBody
+    /**
+     * 设置分页的默认值不传入也不会报错*/
+    public ServerResponse<PageInfo> list(@RequestParam(value = "pageNum", defaultValue = "1") int pageNum,
+                                         @RequestParam(value = "pageSize", defaultValue = "10") int pageSize,
+                                         HttpSession session) {
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+        if (user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
+        }
+        return iShippingService.list(user.getId(), pageNum, pageSize);
+    }
+
+
+}

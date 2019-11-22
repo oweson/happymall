@@ -126,7 +126,7 @@ public class ProductServiceImpl implements IProductService {
      */
     private ProductDetailVo assembleProductDetailVo(Product product) {
         //todo 属性拷贝怎么样？？？
-        /**自己定义的用来封装对象的vo对象*/
+        /*自己定义的用来封装对象的vo对象*/
         ProductDetailVo productDetailVo = new ProductDetailVo();
         productDetailVo.setId(product.getId());
         productDetailVo.setSubtitle(product.getSubtitle());
@@ -140,13 +140,13 @@ public class ProductServiceImpl implements IProductService {
         productDetailVo.setStock(product.getStock());
 
         productDetailVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix", "http://img.happymmall.com/"));
-        /**category找不到说明就是id为0，就是根节点；为0*/
+        /*category找不到说明就是id为0，就是根节点；为0*/
         Category category = categoryMapper.selectByPrimaryKey(product.getCategoryId());
         if (category == null) {
             productDetailVo.setParentCategoryId(0);
             //默认根节点
         } else {
-            /**不为null,就是子分类的节点；设置父目录的节点；*/
+            /*不为null,就是子分类的节点；设置父目录的节点；*/
             productDetailVo.setParentCategoryId(category.getParentId());
         }
 /**用工具类对时间进行转换；*/
@@ -241,16 +241,16 @@ public class ProductServiceImpl implements IProductService {
         if (productId == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
-        /**就是放入购物车的商品，某一天也会不存在，已经下架*/
+        /*就是放入购物车的商品，某一天也会不存在，已经下架*/
         Product product = productMapper.selectByPrimaryKey(productId);
         if (product == null) {
             return ServerResponse.createByErrorMessage("产品已下架或者删除");
         }
-        /**删除就是修改状态，查到商品状态可能已经下架，进行判断*/
+        /*删除就是修改状态，查到商品状态可能已经下架，进行判断*/
         if (product.getStatus() != Const.ProductStatusEnum.ON_SALE.getCode()) {
             return ServerResponse.createByErrorMessage("产品已下架或者删除");
         }
-        /**组装商品详情的vo对象*/
+        /*组装商品详情的vo对象*/
         ProductDetailVo productDetailVo = assembleProductDetailVo(product);
         return ServerResponse.createBySuccess(productDetailVo);
     }
@@ -263,12 +263,12 @@ public class ProductServiceImpl implements IProductService {
         if (StringUtils.isBlank(keyword) && categoryId == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
-        /**大的分类id下面有很对的子分类id查过来放进去*/
+        /*大的分类id下面有很对的子分类id查过来放进去*/
         List<Integer> categoryIdList = new ArrayList<Integer>();
 
         if (categoryId != null) {
             Category category = categoryMapper.selectByPrimaryKey(categoryId);
-            /**没有该分类,或者没有关键字为空,这个时候返回一个空的结果集,不报错*/
+            /*没有该分类,或者没有关键字为空,这个时候返回一个空的结果集,不报错*/
             if (category == null && StringUtils.isBlank(keyword)) {
                 PageHelper.startPage(pageNum, pageSize);
                 List<ProductListVo> productListVoList = Lists.newArrayList();
@@ -283,11 +283,10 @@ public class ProductServiceImpl implements IProductService {
         }
 
         PageHelper.startPage(pageNum, pageSize);
-        /**排序处理*/
+        /*排序处理*/
         if (StringUtils.isNotBlank(orderBy)) {
             if (Const.ProductListOrderBy.PRICE_ASC_DESC.contains(orderBy)) {
-                /**c传入的数据格式price_asc,进行分割
-                 * 然后在拼接*/
+                /*传入的数据格式price_asc,进行分割然后在拼接*/
                 String[] orderByArray = orderBy.split("_");
                 PageHelper.orderBy(orderByArray[0] + " " + orderByArray[1]);
             }

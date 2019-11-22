@@ -79,17 +79,17 @@ public class OrderServiceImpl implements IOrderService {
      */
     public ServerResponse createOrder(Integer userId, Integer shippingId) {
 
-        /**从购物车中获取数据,查处勾选的*/
+        /*从购物车中获取数据,查处勾选的*/
         List<Cart> cartList = cartMapper.selectCheckedCartByUserId(userId);
 
-        /**计算这个订单的总价*/
+        /*计算这个订单的总价*/
         ServerResponse serverResponse = this.getCartOrderItem(userId, cartList);
         if (!serverResponse.isSuccess()) {
             return serverResponse;
         }
         List<OrderItem> orderItemList = (List<OrderItem>) serverResponse.getData();
         BigDecimal payment = this.getOrderTotalPrice(orderItemList);
-        /**生成订单*/
+        /*生成订单*/
         Order order = this.assembleOrder(userId, shippingId, payment);
         if (order == null) {
             return ServerResponse.createByErrorMessage("生成订单错误");
@@ -100,13 +100,13 @@ public class OrderServiceImpl implements IOrderService {
         for (OrderItem orderItem : orderItemList) {
             orderItem.setOrderNo(order.getOrderNo());
         }
-        /**mybatis 批量插入*/
+        /*mybatis 批量插入*/
         orderItemMapper.batchInsert(orderItemList);
-        /**生成成功,我们要减少我们产品的库存*/
+        /*生成成功,我们要减少我们产品的库存*/
         this.reduceProductStock(orderItemList);
-        /**清空一下购物车*/
+        /*清空一下购物车*/
         this.cleanCart(cartList);
-        /**返回给前端数据*/
+        /*返回给前端数据*/
         OrderVo orderVo = assembleOrderVo(order, orderItemList);
         return ServerResponse.createBySuccess(orderVo);
     }
@@ -124,35 +124,31 @@ public class OrderServiceImpl implements IOrderService {
         orderVo.setPostage(order.getPostage());
         orderVo.setStatus(order.getStatus());
         orderVo.setStatusDesc(Const.OrderStatusEnum.codeOf(order.getStatus()).getValue());
-        /**收货地址的id*/
+        /*收货地址的id*/
         orderVo.setShippingId(order.getShippingId());
-        /**查询收货地址*/
+        /*查询收货地址*/
         Shipping shipping = shippingMapper.selectByPrimaryKey(order.getShippingId());
-        /**收货地址不为空就设置姓名和组装vo*/
+        /*收货地址不为空就设置姓名和组装vo*/
         if (shipping != null) {
             orderVo.setReceiverName(shipping.getReceiverName());
-            /**组装收货地址的vo到订单的vo*/
+            /*组装收货地址的vo到订单的vo*/
             orderVo.setShippingVo(assembleShippingVo(shipping));
         }
-
         orderVo.setPaymentTime(DateTimeUtil.dateToStr(order.getPaymentTime()));
         orderVo.setSendTime(DateTimeUtil.dateToStr(order.getSendTime()));
         orderVo.setEndTime(DateTimeUtil.dateToStr(order.getEndTime()));
         orderVo.setCreateTime(DateTimeUtil.dateToStr(order.getCreateTime()));
         orderVo.setCloseTime(DateTimeUtil.dateToStr(order.getCloseTime()));
-
-        /**设置图片地址的前缀*/
+        /*设置图片地址的前缀*/
         orderVo.setImageHost(PropertiesUtil.getProperty("ftp.server.http.prefix"));
-
-
         List<OrderItemVo> orderItemVoList = Lists.newArrayList();
-        /**组装订单项的vo,一个订单的Vo包含很多的订单详情的vo*/
+        /*组装订单项的vo,一个订单的Vo包含很多的订单详情的vo*/
         for (OrderItem orderItem : orderItemList) {
             OrderItemVo orderItemVo = assembleOrderItemVo(orderItem);
-            /**填充订单项的集合*/
+            /*填充订单项的集合*/
             orderItemVoList.add(orderItemVo);
         }
-        /**吧订单项的机会的vo设置到订单的vo*/
+        /*把订单项的vo设置到订单的vo*/
         orderVo.setOrderItemVoList(orderItemVoList);
         return orderVo;
     }
@@ -277,7 +273,7 @@ public class OrderServiceImpl implements IOrderService {
             if (cartItem.getQuantity() > product.getStock()) {
                 return ServerResponse.createByErrorMessage("产品" + product.getName() + "库存不足");
             }
-            /**到了这里就是商品在售，库存充足；
+            /*到了这里就是商品在售，库存充足；
              * 组装订单项*/
             orderItem.setUserId(userId);
             orderItem.setProductId(product.getId());
@@ -298,7 +294,7 @@ public class OrderServiceImpl implements IOrderService {
      * 11 取消订单
      */
     public ServerResponse<String> cancel(Integer userId, Long orderNo) {
-        /**通过用户id和订单id查询这个订单是不是存在*/
+        /*通过用户id和订单id查询这个订单是不是存在*/
         Order order = orderMapper.selectByUserIdAndOrderNo(userId, orderNo);
         if (order == null) {
             return ServerResponse.createByErrorMessage("该用户此订单不存在");
@@ -318,6 +314,7 @@ public class OrderServiceImpl implements IOrderService {
             /*取消成功*/
             return ServerResponse.createBySuccess();
         }
+        // 释放库存 todo
         return ServerResponse.createByError();
     }
 
@@ -327,7 +324,6 @@ public class OrderServiceImpl implements IOrderService {
     public ServerResponse getOrderCartProduct(Integer userId) {
         OrderProductVo orderProductVo = new OrderProductVo();
         /*从购物车中获取数据*/
-
         List<Cart> cartList = cartMapper.selectCheckedCartByUserId(userId);
         ServerResponse serverResponse = this.getCartOrderItem(userId, cartList);
         if (!serverResponse.isSuccess()) {

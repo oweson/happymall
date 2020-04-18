@@ -39,7 +39,6 @@ public class ProductController {
                                          @PathVariable(value = "categoryId") Integer categoryId,
                                          @PathVariable(value = "pageNum") Integer pageNum,
                                          @PathVariable(value = "pageSize") Integer pageSize,
-
                                          @PathVariable(value = "orderBy") String orderBy) {
         /*为商品的分页参数设置默认值*/
         if (pageNum == null) {

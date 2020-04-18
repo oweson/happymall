@@ -92,7 +92,9 @@ public class OrderManageController {
         }
     }
 
-/** 4 发货*/
+    /**
+     * 4 发货
+     */
     @RequestMapping("send_goods.do")
     @ResponseBody
     public ServerResponse<String> orderSendGoods(HttpSession session, Long orderNo) {

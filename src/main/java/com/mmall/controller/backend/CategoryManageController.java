@@ -40,7 +40,7 @@ public class CategoryManageController {
      */
     @RequestMapping("add_category.do")
     @ResponseBody
-    /**  判断当前用户是否登录，session是有效期限的，不传入parentId就是一级分类*/
+    /* 判断当前用户是否登录，session是有效期限的，不传入parentId就是一级分类*/
     public ServerResponse addCategory(HttpSession session, String categoryName, @RequestParam(value = "parentId", defaultValue = "0") int parentId) {
         /* 从session中得到当前用户*/
         User user = (User) session.getAttribute(Const.CURRENT_USER);
@@ -49,21 +49,21 @@ public class CategoryManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录");
         }
         // todo 拦截器做登陆校验
-        /**校验一下是否是管理员,只有管理员才可以操作分类*/
+        /*校验一下是否是管理员,只有管理员才可以操作分类*/
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**调用了方法得到教研对象，然后又调用了方法判断成功*/
-            /**是管理员,增加我们处理分类的逻辑*/
+            /*调用了方法得到教研对象，然后又调用了方法判断成功*/
+            /*是管理员,增加我们处理分类的逻辑*/
 
             return iCategoryService.addCategory(categoryName, parentId);
 
         } else {
-            /**不是管理员越权操作；*/
+            /*不是管理员越权操作；*/
             return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");
         }
     }
 
     /**
-     * 2 更新catagoryName的接口
+     * 2 更新categoryName的接口
      */
     @RequestMapping("set_category_name.do")
     @ResponseBody
@@ -116,7 +116,7 @@ public class CategoryManageController {
         if (iUserService.checkAdminRole(user).isSuccess()) {
             //查询当前节点的id和递归子节点的id
             //            0->10000->100000 爷爷-老子--儿子...
-            /**加入传入0，要返回10000和100000，如果传入的是10000要返回100000；*/
+            /*加入传入0，要返回10000和100000，如果传入的是10000要返回100000；*/
             return iCategoryService.selectCategoryAndChildrenById(categoryId);
 
         } else {

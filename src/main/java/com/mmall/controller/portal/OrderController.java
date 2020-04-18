@@ -62,7 +62,6 @@ public class OrderController {
     /**
      * 3 获取订单的商品信息
      */
-//todo
     @RequestMapping("get_order_cart_product.do")
     @ResponseBody
     public ServerResponse getOrderCartProduct(HttpSession session) {
@@ -103,8 +102,6 @@ public class OrderController {
     @ResponseBody
     public Object aliPayCallBack(HttpServletRequest request) {
         Map<String, String[]> parameterMap = request.getParameterMap();
-
-
         /*支付宝的回调，封装在request中*/
         return null;
 
@@ -126,7 +123,6 @@ public class OrderController {
     @ResponseBody
     public Object alipayCallback(HttpServletRequest request) {
         Map<String, String> params = Maps.newHashMap();
-
         Map requestParams = request.getParameterMap();
         for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext(); ) {
             String name = (String) iter.next();

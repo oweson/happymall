@@ -36,7 +36,8 @@ public class ProductManageController {
 
     @RequestMapping("save.do")
     @ResponseBody
-    /** 1 保存商品信息或者更新，*/
+    /**
+     *  1 保存商品信息或者更新，*/
     public ServerResponse productSave(HttpSession session, Product product) {
         /*后端操作，需要用户登录并且是管理员才可以操作；*/
         User user = (User) session.getAttribute(Const.CURRENT_USER);
@@ -47,7 +48,7 @@ public class ProductManageController {
         }
         /*确认是管理员*/
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**填充我们增加产品的业务逻辑*/
+            /*填充我们增加产品的业务逻辑*/
             return iProductService.saveOrUpdateProduct(product);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作");
@@ -65,7 +66,7 @@ public class ProductManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录管理员");
 
         }
-        /**只有是管理员才能够进行对商品的上下架进行操作；*/
+        /*只有是管理员才能够进行对商品的上下架进行操作；*/
         if (iUserService.checkAdminRole(user).isSuccess()) {
             return iProductService.setSaleStatus(productId, status);
         } else {
@@ -107,7 +108,7 @@ public class ProductManageController {
 
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**填充业务*/
+            /*填充业务*/
             return iProductService.getProductList(pageNum, pageSize);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作");

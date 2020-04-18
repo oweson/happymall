@@ -61,7 +61,7 @@ public class UserManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), ResponseCode.NEED_LOGIN.getDesc());
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /**填充业务*/
+            /*填充业务*/
             return iUserService.list(pageNum,pageSize);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作");

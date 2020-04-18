@@ -34,13 +34,13 @@ public class CartServiceImpl implements ICartService {
      * 1 添加购物车
      */
     public ServerResponse<CartVo> add(Integer userId, Integer productId, Integer count) {
-        /**浏览器审查元素恶意提交*/
+        /*浏览器审查元素恶意提交*/
         //todo 问题在于productId进不来！！！
         if (productId == null || count == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(), ResponseCode.ILLEGAL_ARGUMENT.getDesc());
         }
 
-/** 根据用户的id和商品的id进行查询；*/
+/* 根据用户的id和商品的id进行查询；*/
         Cart cart = cartMapper.selectCartByUserIdProductId(userId, productId);
         if (cart == null) {
             /**这个产品不在这个购物车里,需要新增一个这个产品的记录--订单项*/

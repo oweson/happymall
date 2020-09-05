@@ -1,4 +1,4 @@
-package main.com.alipy.demo.trade;
+package com.alipy.demo.trade;
 
 /**
  * the class is create by @Author:oweson

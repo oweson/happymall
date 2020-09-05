@@ -3,10 +3,7 @@ package com.mmall.pojo;
 import lombok.*;
 
 import java.util.Date;
-@Setter
-@Getter
-@NoArgsConstructor
-
+@Data
 public class User {
     /**用户表*/
     private Integer id;
@@ -41,8 +38,6 @@ public class User {
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
-
-
 
     public Integer getId() {
         return id;

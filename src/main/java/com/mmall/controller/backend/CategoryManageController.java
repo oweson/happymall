@@ -53,7 +53,6 @@ public class CategoryManageController {
         if (iUserService.checkAdminRole(user).isSuccess()) {
             /*调用了方法得到教研对象，然后又调用了方法判断成功*/
             /*是管理员,增加我们处理分类的逻辑*/
-
             return iCategoryService.addCategory(categoryName, parentId);
 
         } else {
@@ -74,7 +73,6 @@ public class CategoryManageController {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "用户未登录,请登录");
         }
         if (iUserService.checkAdminRole(user).isSuccess()) {
-            /*更新categoryName*/
             return iCategoryService.updateCategoryName(categoryId, categoryName);
         } else {
             return ServerResponse.createByErrorMessage("无权限操作,需要管理员权限");
@@ -116,7 +114,7 @@ public class CategoryManageController {
         if (iUserService.checkAdminRole(user).isSuccess()) {
             //查询当前节点的id和递归子节点的id
             //            0->10000->100000 爷爷-老子--儿子...
-            /*加入传入0，要返回10000和100000，如果传入的是10000要返回100000；*/
+            //加入传入0，要返回10000和100000，如果传入的是10000要返回100000；
             return iCategoryService.selectCategoryAndChildrenById(categoryId);
 
         } else {
